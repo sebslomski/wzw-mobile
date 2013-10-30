@@ -1,0 +1,14 @@
+{
+  "debug": false,
+  "title": "CuttersLounge Mobile Staging",
+  "apiUrl": "http://api.staging.cutterslounge.de",
+  "cookie": {
+    "name": "clounge",
+    "domain": "app.staging.cutterslounge.de",
+    "expires": 10
+  },
+  "staticUrl": "/static",
+  "mediaUrl": "http://res.cloudinary.com/staging-cutters-lounge/image/upload/c_thumb,g_face,r_max,",
+  "googleApiKey": "AIzaSyAy0YeZm3TWwlCx1Ig15XY6bWn3yijK7tY",
+  "pusherKey": "f32bfb50be077b8ae67f"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "CuttersLoungeMobile",
+  "version": "1.0.0",
+  "description": "CuttersLounge Mobile",
+  "author": {
+    "name": "Sebastian Slomski",
+    "email": "me@sebslomski.com"
+  },
+  "engines": {
+    "npm": "*",
+    "node": "*"
+  },
+  "dependencies": {
+    "grunt": "*",
+    "grunt-contrib-handlebars": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-concat": "*"
+  },
+  "devDependencies": {
+    "express": "*"
+  }
+}

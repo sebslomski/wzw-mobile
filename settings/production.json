@@ -1,0 +1,18 @@
+{
+  "debug": false,
+  "title": "Cutters Lounge Mobile",
+  "apiUrl": "https://api.cutterslounge.de",
+  "cookie": {
+    "name": "clounge",
+    "domain": "app.cutterslounge.de",
+    "expires": 10,
+    "secure": true
+  },
+  "staticUrl": "/static",
+  "mediaUrl": "https://res.cloudinary.com/cutters-lounge/image/upload/c_thumb,g_face,r_max,",
+  "googleApiKey": "AIzaSyAy0YeZm3TWwlCx1Ig15XY6bWn3yijK7tY",
+  "googleAnalyticsKey": "UA-35395623-2",
+  "sentry": "https://8ac51e46231b4e0ebc94b7d899a28710@app.getsentry.com/6008",
+  "mixpanel": "9fb661b50b835d09d04262290a753304",
+  "pusherKey": "f32bfb50be077b8ae67f"
+}
