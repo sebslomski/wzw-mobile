@@ -28,7 +28,8 @@ $(function() {
         }
 
         var headers = {
-            'CLOUNGE_ORIGIN': origin
+            'CLOUNGE_ORIGIN': origin,
+            'READONLY': 1
         };
 
         if (App.token) {
