@@ -14,6 +14,10 @@ var App = null;
     App.on('start', function(options) {
         App.options = options;
 
+        $('.content').css({
+            'min-height': $(window).height()
+        });
+
         Backbone.history.start();
     });
 })();
