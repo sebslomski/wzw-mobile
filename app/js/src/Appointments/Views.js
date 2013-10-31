@@ -3,7 +3,24 @@ App.module('Appointments.Views', function(Views, App, Backbone, Marionette, $, _
 
 
     Views.AppointmentListHeader = Marionette.ItemView.extend({
-        template: 'Appointments/Views/AppointmentListHeader.html'
+        template: 'Appointments/Views/AppointmentListHeader.html',
+
+        events: {
+            'touchstart .header-refresh': 'refresh',
+            'click .header-refresh': 'refresh',
+            'touchstart .header-logout': 'logout',
+            'click .header-logout': 'logout'
+        },
+
+
+        logout: function(e) {
+            App.Core.Routing.showRoute('auth/logout');
+        },
+
+
+        refresh: function(e) {
+            Backbone.history.loadUrl();
+        }
     });
 
 

@@ -14,10 +14,6 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
                 this.headerRegion.show(this.options.headerView);
             }
 
-            this.$(this.contentRegion.el).css({
-                'min-height': $(window).height()
-            });
-
             if (this.options.contentView) {
                 this.contentRegion.show(this.options.contentView);
             }

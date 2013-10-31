@@ -18,7 +18,6 @@ App.module('User.Controller', function(Controller, App, Backbone, Marionette, $,
         model.destroy()
             .always(function() {
                 App.Core.Cookie.setCookieData(null);
-                App.layout.close();
                 App.Core.Routing.showRoute('', {silent: true});
                 window.location.reload();
             });
