@@ -5,8 +5,7 @@
   "cookie": {
     "name": "clounge",
     "domain": "m.cutterslounge.de",
-    "expires": 10,
-    "secure": true
+    "expires": 10
   },
   "staticUrl": "/static",
   "mediaUrl": "https://res.cloudinary.com/cutters-lounge/image/upload/c_thumb,g_face,r_max,",
