@@ -3,9 +3,13 @@ App.module('User.Controller', function(Controller, App, Backbone, Marionette, $,
 
 
     Controller.showLogin = function() {
-        App.content.show(
-            new App.User.Views.Login()
-        );
+        var contentView = new App.User.Views.Login();
+
+        var layout = new App.Core.Layouts.Main({
+            contentView: contentView
+        });
+
+        App.viewport.show(layout);
     };
 
 

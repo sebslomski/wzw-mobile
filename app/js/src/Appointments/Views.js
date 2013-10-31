@@ -2,6 +2,11 @@ App.module('Appointments.Views', function(Views, App, Backbone, Marionette, $, _
     'use strict';
 
 
+    Views.AppointmentListHeader = Marionette.ItemView.extend({
+        template: 'Appointments/Views/AppointmentListHeader.html'
+    });
+
+
     Views.AppointmentListItem = Marionette.ItemView.extend({
         tagName: 'li',
         template: 'Appointments/Views/AppointmentListItem.html',

@@ -6,8 +6,7 @@ var App = null;
     App = new Backbone.Marionette.Application();
 
     App.addRegions({
-        content: '.content',
-        header: '.header'
+        viewport: 'body'
     });
 
 
@@ -21,10 +20,6 @@ var App = null;
         if (navigator.standalone) {
             $('body').addClass('standalone');
         }
-
-        $('.content').css({
-            'min-height': $(window).height()
-        });
 
         Backbone.history.start({
             silent: true

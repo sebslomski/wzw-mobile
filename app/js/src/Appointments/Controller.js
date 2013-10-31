@@ -30,10 +30,18 @@ App.module('Appointments.Controller', function(Controller, App, Backbone, Marion
                     });
                 });
 
+                var headerView = new App.Appointments.Views.AppointmentListHeader();
+
                 var contentView = new App.Appointments.Views.DayList({
                     collection: collection
                 });
-                App.content.show(contentView);
+
+                var layout = new App.Core.Layouts.Main({
+                    headerView: headerView,
+                    contentView: contentView
+                });
+
+                App.viewport.show(layout);
             })
             .always(function() {
                 NProgress.done();

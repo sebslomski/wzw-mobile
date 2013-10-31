@@ -14,7 +14,6 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
         login: function(e) {
             e.preventDefault();
             var that = this;
-            this.ladda.start();
 
             var data = {
                 email: this.$('input[name="user-email"]').val(),
@@ -34,8 +33,6 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
                     App.vent.trigger('App.User:loggedIn');
                 })
                 .fail(function(res) {
-                    that.ladda.stop();
-
                     if (res.status === 401) {
                         alert('Ihr Account ist noch nicht aktiviert. Bitte klicken Sie auf den Aktivierungslink in Ihrer Mail.');
                     } else {
@@ -45,7 +42,11 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
         },
 
         onRender: function() {
-            this.ladda = Ladda.create(this.$('button[type=submit]').get(0));
+            $('body').addClass('user-auth');
+        },
+
+        onClose: function() {
+            $('body').removeClass('user-auth');
         }
     });
 });

@@ -14,6 +14,11 @@
     });
 
 
+    Handlebars.registerHelper('static', function(path) {
+        return App.options.staticUrl + path;
+    });
+
+
     Handlebars.registerHelper('equal', function(lvalue, rvalue, options) {
         if (arguments.length < 3) {
             throw {
