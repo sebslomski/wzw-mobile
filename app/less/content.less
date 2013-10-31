@@ -133,3 +133,31 @@
 
     background: #fff;
 }
+
+
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+
+    background: fade(#000, 10%);
+
+    line-height: 350px;
+    color: #888;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+body.s-is-loading {
+    .loading {
+        display: block;
+    }
+    .content, .header {
+        -webkit-filter: blur(2px);
+    }
+}

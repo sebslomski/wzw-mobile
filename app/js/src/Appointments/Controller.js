@@ -9,7 +9,7 @@ App.module('Appointments.Controller', function(Controller, App, Backbone, Marion
 
     Controller.showAppointments = function() {
         NProgress.start();
-        $('.loading').css({display: 'block'});
+        $('body').addClass('s-is-loading');
 
         var appointments = new App.Appointments.Collections.Appointments();
 
@@ -46,7 +46,7 @@ App.module('Appointments.Controller', function(Controller, App, Backbone, Marion
             })
             .always(function() {
                 NProgress.done();
-                $('.loading').css({display: 'none'});
+                $('body').removeClass('s-is-loading');
             });
     };
 });
