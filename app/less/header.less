@@ -12,9 +12,8 @@
 
 
 body.standalone {
-    .global-header,
     .header {
-        height: 76px;
+        height: 60px;
         padding-top: 16px;
     }
 }
@@ -22,8 +21,6 @@ body.standalone {
 
 .header {
     z-index: 1000;
-    display: table;
-    table-layout: fixed;
     padding: 0 8px;
 
     background: fade(#7a8cad, 90%);
@@ -31,14 +28,20 @@ body.standalone {
     color: #fff;
 
     & > div {
-        display: table-row;
+        display: table;
+        table-layout: fixed;
+        width: 100%;
 
         & > div {
-            display: table-cell;
-            height: 44px;
+            display: table-row;
 
-            line-height: 44px;
-            white-space: nowrap;
+            & > div {
+                display: table-cell;
+                height: 44px;
+
+                line-height: 44px;
+                white-space: nowrap;
+            }
         }
     }
 }
@@ -63,26 +66,22 @@ body.standalone {
 }
 
 .header-logout {
-    padding-left: 26px;
+    padding-right: 26px;
 
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: right 11px;
     background-size: 21px;
     background-image: url(images/logout.png);
-
-    text-align: left;
 }
 
 
 .header-refresh {
-    padding-right: 26px;
+    padding-left: 26px;
 
     background-repeat: no-repeat;
-    background-position: right center;
+    background-position: left 11px;
     background-size: 21px;
     background-image: url(images/refresh.png);
-
-    text-align: right;
 }
 
 
