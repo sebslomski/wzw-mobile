@@ -8,29 +8,35 @@ App.module('Appointments.Controller', function(Controller, App, Backbone, Marion
 
 
     Controller.showAppointments = function() {
+        NProgress.start();
+
         var appointments = new App.Appointments.Collections.Appointments();
 
-        appointments.fetch().done(function() {
-            var grouped = appointments.groupBy(function(model) {
-                var date = moment(model.get('date'));
-                return date.sod().toDate();
-            });
-
-            var collection = new Backbone.Collection();
-
-            _.each(grouped, function(value, key) {
-                collection.add({
-                    day: key,
-                    appointments: new App.Appointments.Collections.Appointments(
-                        value
-                    )
+        appointments.fetch()
+            .done(function() {
+                var grouped = appointments.groupBy(function(model) {
+                    var date = moment(model.get('date'));
+                    return date.sod().toDate();
                 });
-            });
 
-            var contentView = new App.Appointments.Views.DayList({
-                collection: collection
+                var collection = new Backbone.Collection();
+
+                _.each(grouped, function(value, key) {
+                    collection.add({
+                        day: key,
+                        appointments: new App.Appointments.Collections.Appointments(
+                            value
+                        )
+                    });
+                });
+
+                var contentView = new App.Appointments.Views.DayList({
+                    collection: collection
+                });
+                App.content.show(contentView);
+            })
+            .always(function() {
+                NProgress.done();
             });
-            App.content.show(contentView);
-        });
     };
 });

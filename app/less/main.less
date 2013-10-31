@@ -1,16 +1,7 @@
 @import 'vendor/normalize';
+@import 'vendor/nprogress';
 @import 'header';
 @import 'content';
-
-
-.hairline(@position: bottom) {
-    background-repeat: repeat-x;
-    background-position: @position left;
-    background-size: 100% 1px;
-    background-image: url(data:image/gif;base64,R0lGODlhAQACAPABAMjHzP///yH/C1hNUCBEYXRhWE1QAz94cAAh+QQFAAABACwAAAAAAQACAAACAgwKADs=);
-}
-
-
 
 
 * {
@@ -25,4 +16,24 @@ body {
     line-height: 21px;
     font-family: -apple-system-font, 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif;
     font-weight: 400;
+}
+
+
+.hairline(@position: bottom) {
+    background-repeat: repeat-x;
+    background-position: @position left;
+    background-size: 100% 1px;
+    background-image: url(data:image/gif;base64,R0lGODlhAQACAPABAMjHzP///yH/C1hNUCBEYXRhWE1QAz94cAAh+QQFAAABACwAAAAAAQACAAACAgwKADs=);
+}
+
+
+#nprogress .bar {
+    z-index: 1010;
+    background: #fff;
+
+    .peg {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+    }
 }

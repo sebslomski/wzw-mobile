@@ -14,6 +14,8 @@ var App = null;
     App.on('start', function(options) {
         App.options = options;
 
+        NProgress.configure({showSpinner: false});
+
         if (navigator.standalone) {
             $('body').addClass('standalone');
         }
