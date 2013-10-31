@@ -4,7 +4,7 @@
   "apiUrl": "http://api.staging.cutterslounge.de",
   "cookie": {
     "name": "clounge",
-    "domain": "app.staging.cutterslounge.de",
+    "domain": "m.staging.cutterslounge.de",
     "expires": 10
   },
   "staticUrl": "/static",
