@@ -14,6 +14,10 @@ var App = null;
     App.on('start', function(options) {
         App.options = options;
 
+        if (navigator.standalone) {
+            $('body').addClass('standalone');
+        }
+
         $('.content').css({
             'min-height': $(window).height()
         });
