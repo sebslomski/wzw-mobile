@@ -3,6 +3,7 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
 
     Layouts.Main = Backbone.Marionette.Layout.extend({
         template: 'Core/Layout.html',
+        className: 'core-layout',
 
         regions: {
             headerRegion: '#core-layout-header',
