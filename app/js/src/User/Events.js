@@ -41,14 +41,6 @@ App.module('User.Events', function(Events, App, Backbone, Marionette, $, _) {
                 Backbone.history.loadUrl();
             }
         }
-
-        if (App.options.sentry) {
-            Raven.setUser({
-                email: App.User.user.get('email'),
-                first_name: App.User.user.get('first_name'),
-                last_name: App.User.user.get('last_name')
-            });
-        }
     };
     App.vent.on('App.User:loggedIn', Events['App.User:loggedIn']);
 
