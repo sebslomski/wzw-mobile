@@ -58,7 +58,17 @@ App.module('Appointments.Views', function(Views, App, Backbone, Marionette, $, _
     });
 
 
+    Views.NoDayListItems = Marionette.ItemView.extend({
+        className: 'appointments-no-day-list-items',
+
+        render: function() {
+            this.$el.html('Keine Termine vorhanden.');
+        }
+    });
+
+
     Views.DayList = Marionette.CollectionView.extend({
-        itemView: Views.AppointmentsList
+        itemView: Views.AppointmentsList,
+        emptyView: Views.NoDayListItems
     });
 });
