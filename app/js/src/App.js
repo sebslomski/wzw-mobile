@@ -14,7 +14,9 @@ var App = null;
     App.on('start', function(options) {
         App.options = options;
 
-        NProgress.configure({showSpinner: false});
+        NProgress.configure({
+            showSpinner: false
+        });
 
         if (navigator.standalone) {
             $('body').addClass('standalone');
@@ -24,6 +26,10 @@ var App = null;
             'min-height': $(window).height()
         });
 
-        Backbone.history.start();
+        Backbone.history.start({
+            silent: true
+        });
+
+        App.vent.trigger('App:start');
     });
 })();

@@ -18,6 +18,7 @@ module.exports = function(grunt) {
         files: {
             lib: [
                 'app/js/lib/jquery.js',
+                'app/js/lib/jquery.cookie.js',
                 'app/js/lib/lodash.underscore.js',
                 'app/js/lib/backbone.js',
                 'app/js/lib/backbone.marionette.js',
@@ -25,7 +26,9 @@ module.exports = function(grunt) {
                 'app/js/lib/moment.js',
                 'app/js/lib/moment.isocalendar.js',
                 'app/js/lib/moment.lang.de.js',
-                'app/js/lib/ladda.js'
+                'app/js/lib/spin.js',
+                'app/js/lib/ladda.js',
+                'app/js/lib/nprogress.js'
             ],
             src: [
                 'app/js/src/Setup.js',
