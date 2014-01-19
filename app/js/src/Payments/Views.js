@@ -6,9 +6,7 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         template: 'Payments/Views/PaymentListHeader.html',
 
         events: {
-            'touchstart .header-new': 'newPayment',
             'click .header-new': 'newPayment',
-            'touchstart .header-back': 'back',
             'click .header-back': 'back'
         },
 
@@ -79,8 +77,7 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         itemViewContainer: '#payments-list',
 
         events: {
-            'click .payments-list-header': 'toggleHeader',
-            'touchstart .payments-list-header': 'toggleHeader'
+            'click .payments-list-header': 'toggleHeader'
         },
 
         initialize: function() {
@@ -188,7 +185,6 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         template: 'Payments/Views/NewPaymentHeader.html',
 
         events: {
-            'touchstart .header-back': 'back',
             'click .header-back': 'back'
         },
 

@@ -6,7 +6,6 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
         template: 'Groups/Views/GroupListHeader.html',
 
         events: {
-            'touchstart .header-refresh': 'refresh',
             'click .header-refresh': 'refresh'
         },
 
@@ -24,7 +23,6 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
         template: 'Groups/Views/GroupListItem.html',
 
         events: {
-            'touchstart ': 'showPayments',
             'click ': 'showPayments'
         },
 
