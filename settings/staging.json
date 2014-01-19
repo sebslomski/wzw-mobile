@@ -1,14 +1,12 @@
 {
   "debug": false,
   "title": "CuttersLounge Mobile Staging",
-  "apiUrl": "http://api.staging.cutterslounge.de",
+  "title": "Wer zahlt was?",
+  "apiUrl": "http://api.wzw.purelabs.de",
   "cookie": {
-    "name": "clounge",
-    "domain": "m.staging.cutterslounge.de",
-    "expires": 10
+    "name": "wzw",
+    "domain": "wzw.purelabs.de",
+    "expires": 100
   },
-  "staticUrl": "/static",
-  "mediaUrl": "http://res.cloudinary.com/staging-cutters-lounge/image/upload/c_thumb,g_face,r_max,",
-  "googleApiKey": "AIzaSyAy0YeZm3TWwlCx1Ig15XY6bWn3yijK7tY",
-  "pusherKey": "f32bfb50be077b8ae67f"
+  "staticUrl": "/static"
 }
