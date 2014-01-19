@@ -1,6 +1,9 @@
 <ul class="payments-list-header">
     {{# each group.users }}
-        <li id="payments-list-header-user-{{ id }}" style="background: {{ color }};">{{ first_name }}</li>
+        <li id="payments-list-header-user-{{ id }}" style="background: {{ color }};">
+            {{ first_name }}
+            <div>{{ numeral total "0,0.00$" }} ({{ numeral offset "0,0.00$" }})</div>
+        </li>
     {{/ each }}
 </ul>
 

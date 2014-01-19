@@ -76,53 +76,85 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         emptyView: Views.NoDayListItems,
         itemViewContainer: '#payments-list',
 
+        events: {
+            'click .payments-list-header': 'toggleHeader',
+            'touchstart .payments-list-header': 'toggleHeader'
+        },
+
         initialize: function() {
             var that = this;
             this.listenTo(asEvents(window), 'resize', _.debounce(function() {
-                that.positionHeader();
+                that.positionHeader({equal: that.$('.payments-list-header').hasClass('s-is-toggled')});
             }, 300));
         },
 
         serializeData: function() {
             var data = Marionette.CompositeView.prototype.serializeData.call(this);
+            var that = this;
 
             data.group = this.options.group.toJSON();
+            _.each(data.group.users, function(user) {
+                user.offset = ((that.getTotal() / data.group.users.length) - user.total) * -1;
+            });
+
+            data.group.users = _.sortBy(data.group.users, function(user) {
+                return -1 * parseInt(user.total, 10);
+            });
 
             return data;
         },
 
 
-        positionHeader: function() {
+        toggleHeader: function() {
+            var that = this;
+
+            that.positionHeader({equal: !that.$('.payments-list-header').hasClass('s-is-toggled')});
+
+            that.$('.payments-list-header').toggleClass('s-is-toggled');
+        },
+
+
+        getTotal: function() {
+            return _.reduce(this.options.group.get('users'), function(memo, user) {
+                return memo + parseInt(user.total, 10);
+            }, 0);
+        },
+
+        positionHeader: function(options) {
             var that = this;
             var screenWidthPercentage = that.$el.width() / 100;
 
-            var total = _.reduce(that.options.group.get('users'), function(memo, user) {
-                return memo + parseInt(user.total, 10);
-            }, 0);
+            var total = this.getTotal();
 
-            _.each(that.options.group.get('users'), function(user) {
-                var percentage = (parseInt(user.total, 10) * 100) / total;
-                that.$('#payments-list-header-user-' + user.id).css({
-                    width: percentage * screenWidthPercentage,
-                    transition: 'width 0.6s ease-out'
+            if (options.equal) {
+                var screenWidthPercentage = that.$el.width() / 100;
+
+                _.each(that.options.group.get('users'), function(user) {
+                    var $item = that.$('#payments-list-header-user-' + user.id);
+
+                    $item.css({
+                        width: (100 / that.options.group.get('users').length) * screenWidthPercentage
+                    });
                 });
-            });
+            } else {
+                _.each(that.options.group.get('users'), function(user) {
+                    var percentage = (parseInt(user.total, 10) * 100) / total;
+                    that.$('#payments-list-header-user-' + user.id).css({
+                        width: percentage * screenWidthPercentage
+                    });
+                });
+            }
         },
 
         onRender: function() {
             var that = this;
 
             _.defer(function() {
-                var screenWidthPercentage = that.$el.width() / 100;
-
-                _.each(that.options.group.get('users'), function(user) {
-                    that.$('#payments-list-header-user-' + user.id).css({
-                        width: (100 / that.options.group.get('users').length) * screenWidthPercentage
-                    });
-                });
+                that.positionHeader({equal: true});
 
                 _.delay(function() {
-                    that.positionHeader();
+                    that.$('.payments-list-header').addClass('s-is-initialized');
+                    that.positionHeader({equal: false});
                 }, 200);
             });
         }

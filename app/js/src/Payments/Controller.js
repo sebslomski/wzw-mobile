@@ -16,7 +16,6 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
                     var date = moment(model.get('created_at'));
                     return date.sod().toDate();
                 });
-                console.log(grouped);
 
                 var collection = new Backbone.Collection();
 

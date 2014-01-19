@@ -205,7 +205,7 @@ body.s-is-loading {
     float: left;
     margin: 0;
     padding: 0;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 
     border-top: 1px solid darken(#6acec6, 10%);
 
@@ -213,6 +213,7 @@ body.s-is-loading {
         margin: 0;
         padding: 0;
         float: left;
+        height: 26px;
 
         color: #fff;
         font-size: 12px;
@@ -223,6 +224,28 @@ body.s-is-loading {
 
         &:not(:last-child) {
             border-right: 1px solid #fff;
+        }
+
+        div {
+            line-height: 20px;
+            opacity: 0;
+        }
+    }
+
+    &.s-is-initialized {
+        li {
+            transition: all 0.6s;
+            -webkit-transition: all 0.6s;
+        }
+    }
+
+    &.s-is-toggled {
+        li {
+            height: 46px;
+
+            div {
+                opacity: 1;
+            }
         }
     }
 }
