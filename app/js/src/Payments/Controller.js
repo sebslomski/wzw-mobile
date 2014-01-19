@@ -13,9 +13,10 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
         payments.fetch()
             .done(function() {
                 var grouped = payments.groupBy(function(model) {
-                    var date = moment(model.get('date'));
+                    var date = moment(model.get('created_at'));
                     return date.sod().toDate();
                 });
+                console.log(grouped);
 
                 var collection = new Backbone.Collection();
 

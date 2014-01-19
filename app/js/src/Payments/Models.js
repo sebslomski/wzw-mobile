@@ -4,7 +4,7 @@ App.module('Payments.Models', function(Models, App, Backbone, Marionette, $, _) 
 
     Models.Payment = App.Core.Models.Core.extend({
         url: function() {
-            return this.baseUrl() + '/group/' + this.groupId + '/'
+            return this.baseUrl() + '/group/' + this.groupId + '/payment/';
         }
     });
 });

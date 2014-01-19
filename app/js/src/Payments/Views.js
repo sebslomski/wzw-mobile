@@ -130,7 +130,22 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
 
 
     Views.NewPayment = Marionette.ItemView.extend({
-        template: 'Payments/Views/NewPayment.html'
+        template: 'Payments/Views/NewPayment.html',
+
+        events: {
+            'submit form': 'submit'
+        },
+
+        submit: function(e) {
+            e.preventDefault();
+
+            this.model.save({
+                amount: this.$('input[name="payment-amount"]').val(),
+                purpose: this.$('input[name="payment-purpose"]').val()
+            }).done(function() {
+                App.Core.Routing.showRoute('group', this.model.groupId, 'payment');
+            });
+        }
     });
 
 
