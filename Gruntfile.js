@@ -21,6 +21,7 @@ module.exports = function(grunt) {
                 'app/js/lib/jquery.cookie.js',
                 'app/js/lib/lodash.underscore.js',
                 'app/js/lib/backbone.js',
+                'app/js/lib/backbone.touch.js',
                 'app/js/lib/backbone.marionette.js',
                 'app/js/lib/handlebars.runtime.js',
                 'app/js/lib/moment.js',
