@@ -1,12 +1,13 @@
-App.module('Appointments.Routing', function(Routing, App, Backbone, Marionette, $, _) {
+App.module('Groups.Routing', function(Routing, App, Backbone, Marionette, $, _) {
     'use strict';
+
 
     Routing.Router = Marionette.AppRouter.extend({
         appRoutes: {
-            '': 'init',
-            'appointments': 'showAppointments'
+            '': 'showDefault',
+            'group': 'showGroups'
         },
-        controller: App.Appointments.Controller
+        controller: App.Groups.Controller
     });
 
 

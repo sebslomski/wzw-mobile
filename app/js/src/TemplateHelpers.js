@@ -9,6 +9,11 @@
     });
 
 
+    Handlebars.registerHelper('numeral', function(value, format) {
+        return numeral(value).format(format);
+    });
+
+
     Handlebars.registerHelper('list', function(items) {
         return items.join(', ')
     });

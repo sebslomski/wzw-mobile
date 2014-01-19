@@ -8,8 +8,6 @@
 
     box-shadow: 0 0 16px rgba(0,0,0,0.2);
 
-    background: #efeff4;
-
     h2 {
         margin: 0;
         padding: 31px 8px 7px;
@@ -22,7 +20,7 @@
         color: #6d6d72;
     }
 
-    ul {
+    .list {
         padding: 0;
         margin: 0;
 
@@ -109,7 +107,7 @@
     input[type=email] {
         background-repeat: repeat-x;
         background-position: bottom left;
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'><rect fill='#7a8cad' x='0' y='0' width='1' height='0.5'/></svg>");
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'><rect fill='#5bcac1' x='0' y='0' width='1' height='0.5'/></svg>");
     }
 
     input[type=submit] {
@@ -117,7 +115,7 @@
 
         background: fade(#fff, 90%);
 
-        color: #7a8cad;
+        color: #5bcac1;
     }
 }
 
@@ -125,6 +123,10 @@
     display: block;
     margin: 0 auto 25px;
     height: 55px;
+
+    font-weight: 400;
+    text-align: center;
+    color: #fff;
 }
 
 
@@ -163,9 +165,29 @@ body.s-is-loading {
 }
 
 
-.appointments-no-day-list-items {
-    line-height: 350px;
-    color: #888;
-    font-size: 14px;
-    text-align: center;
+.payments-list-header {
+    width: 100%;
+    float: left;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+
+    border-top: 1px solid darken(#6acec6, 10%);
+
+    li {
+        margin: 0;
+        padding: 0;
+        float: left;
+
+        color: #fff;
+        font-size: 12px;
+        line-height: 26px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:not(:last-child) {
+            border-right: 1px solid #fff;
+        }
+    }
 }

@@ -23,7 +23,7 @@ body.standalone {
     z-index: 1000;
     padding: 0 8px;
 
-    background: fade(#7a8cad, 90%);
+    background: fade(#5bcac1, 90%);
 
     color: #fff;
 
@@ -48,9 +48,18 @@ body.standalone {
 
 
 .header-title {
+    width: 45%;
+
     text-align: center;
     font-family: '.Helvetica Neue Interface Medium P4', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    span {
+        font-weight: normal;
+        font-size: 80%;
+    }
 }
 
 
@@ -75,13 +84,23 @@ body.standalone {
 }
 
 
-.header-refresh {
-    padding-left: 26px;
+.header-refresh,
+.header-new {
+    padding-right: 26px;
 
     background-repeat: no-repeat;
-    background-position: left 11px;
+    background-position: right 11px;
     background-size: 21px;
+}
+
+
+.header-refresh {
     background-image: url(images/refresh.png);
+}
+
+
+.header-new {
+    background-image: url(images/new.png);
 }
 
 

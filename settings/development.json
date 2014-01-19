@@ -1,13 +1,10 @@
 {
   "debug": true,
-  "title": "CuttersLounge Mobile Development",
-  "apiUrl": "http://api.local.cutterslounge.de:8000",
+  "title": "Haushalt Development",
+  "apiUrl": "http://localhost:8000",
   "cookie": {
-    "name": "clounge",
+    "name": "haushalt",
     "expires": 1
   },
-  "staticUrl": "/static",
-  "mediaUrl": "http://res.cloudinary.com/staging-cutters-lounge/image/upload/c_thumb,g_face,r_max,",
-  "googleApiKey": "AIzaSyAy0YeZm3TWwlCx1Ig15XY6bWn3yijK7tY",
-  "pusherKey": "f32bfb50be077b8ae67f"
+  "staticUrl": "/static"
 }

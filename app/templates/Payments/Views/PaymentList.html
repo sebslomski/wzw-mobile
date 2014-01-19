@@ -1,0 +1,7 @@
+<ul class="payments-list-header">
+    {{# each group.users }}
+        <li id="payments-list-header-user-{{ id }}" style="background: {{ color }};">{{ first_name }}</li>
+    {{/ each }}
+</ul>
+
+<ul id="payments-list" class="list"></ul>

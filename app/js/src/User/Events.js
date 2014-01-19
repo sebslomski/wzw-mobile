@@ -26,21 +26,29 @@ App.module('User.Events', function(Events, App, Backbone, Marionette, $, _) {
 
 
     Events['App.User:loggedIn'] = function(options) {
-        // Set the fragment to '' (default route) if the current
-        // fragment is 'user/login' to prevent circular routing.
-        //var fragment = Backbone.history.getFragment();
-        if (App.fragment && App.fragment.indexOf('auth') === 0) {
-            App.fragment = '';
-        }
+        App.Groups.groups = new App.Groups.Collections.Groups();
 
-        if (!_.isUndefined(App.fragment)) {
-            App.Core.Routing.showRoute(App.fragment);
-            delete App.fragment;
-        } else {
-            if (options && options.loadUrl) {
-                Backbone.history.loadUrl();
+        var promises = [
+            App.Groups.groups.fetch()
+        ];
+
+        $.when.apply($.when, promises).done(function() {
+            // Set the fragment to '' (default route) if the current
+            // fragment is 'user/login' to prevent circular routing.
+            //var fragment = Backbone.history.getFragment();
+            if (App.fragment && App.fragment.indexOf('auth') === 0) {
+                App.fragment = '';
             }
-        }
+
+            if (!_.isUndefined(App.fragment)) {
+                App.Core.Routing.showRoute(App.fragment);
+                delete App.fragment;
+            } else {
+                if (options && options.loadUrl) {
+                    Backbone.history.loadUrl();
+                }
+            }
+        });
     };
     App.vent.on('App.User:loggedIn', Events['App.User:loggedIn']);
 

@@ -27,7 +27,9 @@ module.exports = function(grunt) {
                 'app/js/lib/moment.isocalendar.js',
                 'app/js/lib/moment.lang.de.js',
                 'app/js/lib/add2home.js',
-                'app/js/lib/nprogress.js'
+                'app/js/lib/nprogress.js',
+                'app/js/lib/numeral.min.js',
+                'app/js/lib/numeral.lang.de.js'
             ],
             src: [
                 'app/js/src/Setup.js',
@@ -38,8 +40,10 @@ module.exports = function(grunt) {
                 'app/js/src/Core/**/*.js',
                 'app/js/src/User/Models.js',
                 'app/js/src/User/Collections.js',
-                'app/js/src/Appointments/Models.js',
-                'app/js/src/Appointments/Collections.js',
+                'app/js/src/Groups/Models.js',
+                'app/js/src/Groups/Collections.js',
+                'app/js/src/Payments/Models.js',
+                'app/js/src/Payments/Collections.js',
                 'app/js/src/**/Controller.js',
                 'app/js/src/**/*.js'
             ],

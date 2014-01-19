@@ -27,10 +27,7 @@ $(function() {
             origin += ':' + window.location.port;
         }
 
-        var headers = {
-            'CLOUNGE_ORIGIN': origin,
-            'READONLY': 1
-        };
+        var headers = {};
 
         if (App.token) {
             headers.AUTHORIZATION = 'Token ' + App.token;
@@ -40,4 +37,22 @@ $(function() {
 
         return oldSync(method, model, options);
     };
+
+
+    numeral.language('de');
+
+    window.asEvents = function(el) {
+        var args;
+        return {
+            on: function(event, handler) {
+                if (args) throw new Error("this is one off wrapper");
+                el.addEventListener(event, handler, false);
+                args = [event, handler];
+            },
+            off: function() {
+                el.removeEventListener.apply(el, args);
+            }
+
+        };
+    }
 });
