@@ -165,18 +165,74 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         template: 'Payments/Views/NewPayment.html',
 
         events: {
-            'submit form': 'submit'
+            'submit form': 'submit',
+            'click .payments-new-tags li': 'toggleTag',
+            'keyup input[name="payment-tags"]': 'tagsKeyup'
+        },
+
+        getCurrentTagList: function() {
+            var tags = this.$('input[name="payment-tags"]').val().split(',');
+            tags = _.map(tags, function(elem) {
+                return elem.trim();
+            });
+
+            return _.uniq(_.compact(tags));
         },
 
         submit: function(e) {
             e.preventDefault();
+            var that = this;
 
             this.model.save({
-                amount: this.$('input[name="payment-amount"]').val(),
-                purpose: this.$('input[name="payment-purpose"]').val()
+                amount: this.$('input[name="payment-amount"]').val().replace(',', '.'),
+                purpose: this.$('input[name="payment-purpose"]').val(),
+                tags: this.getCurrentTagList()
             }).done(function() {
-                App.Core.Routing.showRoute('group', this.model.groupId, 'payment');
+                App.Core.Routing.showRoute('group', that.model.groupId, 'payment');
             });
+        },
+
+        toggleTag: function(e) {
+            var $tag = this.$(e.currentTarget);
+            $tag.toggleClass('s-is-selected');
+            var isSelected = $tag.hasClass('s-is-selected');
+            var tag = $tag.html().trim();
+
+            var $tags = this.$('input[name="payment-tags"]');
+            var tagList = this.getCurrentTagList();
+
+            if (isSelected) {
+                tagList.push(tag);
+            } else {
+                tagList = _.filter(tagList, function(elem) {
+                    return elem !== tag;
+                });
+            }
+
+            $tags.val(_.uniq(tagList).join(', '));
+        },
+
+        tagsKeyup: function(e) {
+            var $tags = this.$(e.currentTarget);
+            var tagList = this.getCurrentTagList();
+
+            var selectedTags = _.intersection(this.options.tags.pluck('name'), tagList);
+
+            this.$('.payments-new-tags li').each(function() {
+                var $tag = $(this);
+                var tag = $tag.html().trim();
+
+                $tag.toggleClass('s-is-selected', _.contains(selectedTags, tag));
+            });
+
+        },
+
+        serializeData: function() {
+            var data = Marionette.ItemView.prototype.serializeData.call(this);
+
+            data.tags = this.options.tags.toJSON();
+
+            return data;
         }
     });
 

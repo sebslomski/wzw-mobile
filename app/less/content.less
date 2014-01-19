@@ -127,6 +127,7 @@ form {
     }
 
     input[type=submit] {
+        float: left;
         margin: 15px 0;
 
         background: #5bcac1;
@@ -329,4 +330,51 @@ body.standalone {
     .content {
         padding-top: 60px;
     }
+}
+
+
+.payments-new-tags {
+    float: left;
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    ul {
+        width: 2000px;
+        margin: 0;
+        padding: 0;
+
+        li {
+            float: left;
+            margin: 0;
+            margin-right: 4px;
+            padding: 4px 8px;
+
+            border: 1px solid #5bcac1;
+
+            list-style: none;
+
+            color: #a9a9a9;
+
+            &:before {
+                content: '#';
+            }
+
+            &.s-is-selected {
+                background: #5bcac1;
+
+                color: #fff;
+            }
+        }
+    }
+}
+
+
+input.payments-new-currency {
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-image: url(images/euro.png);
+    background-size: 21px 38px;
 }

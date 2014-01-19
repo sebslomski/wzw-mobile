@@ -7,4 +7,11 @@ App.module('Payments.Models', function(Models, App, Backbone, Marionette, $, _) 
             return this.baseUrl() + '/group/' + this.groupId + '/payment/';
         }
     });
+
+
+    Models.Tag = App.Core.Models.Core.extend({
+        url: function() {
+            return this.baseUrl() + '/group/' + this.groupId + '/tag/';
+        }
+    });
 });

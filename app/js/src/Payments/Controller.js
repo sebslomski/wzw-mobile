@@ -52,22 +52,36 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
 
 
     Controller.showNewPayment = function(groupId) {
+        NProgress.start();
+        $('body').addClass('s-is-loading');
+
         var headerView = new App.Payments.Views.NewPaymentHeader({
             model: App.Groups.groups.get(groupId)
         });
 
-        var payment = new App.Payments.Models.Payment();
-        payment.groupId = groupId;
-
-        var contentView = new App.Payments.Views.NewPayment({
-            model: payment
+        var tags = new App.Payments.Collections.Tags([], {
+            groupId: groupId
         });
 
-        var layout = new App.Core.Layouts.Main({
-            headerView: headerView,
-            contentView: contentView
-        });
+        tags.fetch().done(function() {
+            var payment = new App.Payments.Models.Payment();
+            payment.groupId = groupId;
 
-        App.viewport.show(layout);
+            var contentView = new App.Payments.Views.NewPayment({
+                model: payment,
+                tags: tags
+            });
+
+            var layout = new App.Core.Layouts.Main({
+                headerView: headerView,
+                contentView: contentView
+            });
+
+            App.viewport.show(layout);
+        })
+        .always(function() {
+            NProgress.done();
+            $('body').removeClass('s-is-loading');
+        });
     };
 });
