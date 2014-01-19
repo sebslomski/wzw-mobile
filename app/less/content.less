@@ -101,6 +101,7 @@ form {
         margin-bottom: 10px;
 
         border: 1px solid #5bcac1;
+        border-radius: 0;
         outline-width: 0;
 
         tap-highlight-color: transparent;
@@ -168,6 +169,7 @@ form {
     height: 55px;
 
     font-weight: 400;
+    font-size: 60px;
     text-align: center;
     color: #fff;
     font-family: 'Grand Hotel';
@@ -257,4 +259,58 @@ body.s-is-loading {
     color: #888;
     font-size: 14px;
     text-align: center;
+}
+
+
+.add-to-homescreen {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999999;
+
+    background: #f8f8f8;
+
+    text-align: center;
+
+    header {
+        margin-top: 25px;
+
+        h2, h3 {
+            font-size: 18px;
+        }
+
+        span {
+            font-family: 'Grand Hotel';
+            color: #6acec6;
+            font-size: 26px;
+        }
+    }
+
+    footer {
+        position: absolute;
+        bottom: 5px;
+        width: 100%;
+    }
+}
+
+
+.add-to-homescreen-arrow {
+    float: left;
+    margin-top: 3px;
+    height: 23px;
+    width: 100%;
+
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image: url(images/add-to-homescreen-arrow.png);
+    background-size: 24px 23px;
+}
+
+body.standalone,
+body.debug {
+    .add-to-homescreen {
+        display: none;
+    }
 }

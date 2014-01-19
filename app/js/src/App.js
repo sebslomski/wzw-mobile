@@ -21,6 +21,10 @@ var App = null;
             $('body').addClass('standalone');
         }
 
+        if (options.debug) {
+            $('body').addClass('debug');
+        }
+
         Backbone.history.start({
             silent: true
         });
