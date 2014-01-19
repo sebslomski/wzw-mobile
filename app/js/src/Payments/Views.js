@@ -14,11 +14,13 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
 
 
         back: function(e) {
+            e.stopPropagation();
             App.Core.Routing.showRoute('group');
         },
 
 
         newPayment: function(e) {
+            e.stopPropagation();
             App.Core.Routing.showRoute('group/' + this.model.id + '/payment/new');
         },
 
@@ -105,7 +107,8 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         },
 
 
-        toggleHeader: function() {
+        toggleHeader: function(e) {
+            e.stopPropagation();
             var that = this;
 
             that.positionHeader({equal: !that.$('.payments-list-header').hasClass('s-is-toggled')});
@@ -191,6 +194,7 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
 
 
         back: function(e) {
+            e.stopPropagation();
             App.Core.Routing.showRoute('group/' + this.model.id + '/payment');
         }
     });

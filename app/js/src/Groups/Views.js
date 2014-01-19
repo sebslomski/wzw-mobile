@@ -12,6 +12,7 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
 
 
         refresh: function(e) {
+            e.stopPropagation();
             App.Groups.groups.fetch();
         }
     });
@@ -29,6 +30,7 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
 
 
         showPayments: function(e) {
+            e.stopPropagation();
             App.Core.Routing.showRoute('group/' + this.model.id + '/payment');
         },
 
