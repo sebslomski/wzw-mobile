@@ -14,7 +14,12 @@
     });
 
 
-    Handlebars.registerHelper('list', function(items) {
+    Handlebars.registerHelper('list', function(items, prefix) {
+        if (_.isString(prefix)) {
+            items = _.map(items, function(item) {
+                return prefix + item;
+            });
+        }
         return items.join(', ')
     });
 
