@@ -26,7 +26,6 @@ module.exports = function(grunt) {
                 'app/js/lib/moment.js',
                 'app/js/lib/moment.isocalendar.js',
                 'app/js/lib/moment.lang.de.js',
-                'app/js/lib/add2home.js',
                 'app/js/lib/nprogress.js',
                 'app/js/lib/numeral.min.js',
                 'app/js/lib/numeral.lang.de.js'
