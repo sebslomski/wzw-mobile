@@ -127,8 +127,6 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
             var total = this.getTotal();
 
             if (options.equal) {
-                var screenWidthPercentage = that.$el.width() / 100;
-
                 _.each(that.options.group.get('users'), function(user) {
                     var $item = that.$('#payments-list-header-user-' + user.id);
 

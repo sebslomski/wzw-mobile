@@ -48,6 +48,7 @@ module.exports = function(grunt) {
                 'app/js/src/**/*.js'
             ],
             less: 'app/less/main.less',
+            lessWatch: ['src/less/**/*.less'],
             templates: 'app/templates/**/*.html',
             index: 'app/index.html'
         },
@@ -135,8 +136,16 @@ module.exports = function(grunt) {
 
 
         watch: {
-            files: ['<%= files.lib %>', '<%= files.src %>', '<%= files.templates %>'],
-            tasks: 'default'
+            tasks: 'default',
+            all: {
+                tasks:['build', 'timestamp'],
+                files: [
+                    '<%= files.lib %>',
+                    '<%= files.src %>',
+                    '<%= files.templates %>',
+                    '<%= files.lessWatch %>'
+                ]
+            }
         },
 
 
@@ -160,7 +169,15 @@ module.exports = function(grunt) {
                 options: {
                     port: 5001,
                     base: 'dist',
-                    keepalive: true
+                    open: true
+                }
+            }
+        },
+
+        notify: {
+            build: {
+                options: {
+                    message: 'Build complete, Major Tom'
                 }
             }
         }
@@ -184,7 +201,15 @@ module.exports = function(grunt) {
     });
 
 
-    grunt.registerTask('default', ['clean', 'handlebars', 'concat', 'less:development', 'compile-index:development', 'copy']);
+    // Print a timestamp (useful for when watching)
+    grunt.registerTask('timestamp', function() {
+        grunt.log.subhead(Date());
+    });
+
+
+    grunt.registerTask('build', ['clean', 'handlebars', 'concat', 'less:development', 'compile-index:development', 'copy']);
+    grunt.registerTask('default', ['build']);
+    grunt.registerTask('dev', ['jshint', 'build', 'connect', 'watch']);
     grunt.registerTask('staging', ['clean', 'handlebars', 'concat', 'less:development', 'compile-index:staging', 'copy']);
     grunt.registerTask('production', ['clean', 'handlebars', 'concat', 'less:production', 'compile-index:production', 'copy']);
 };

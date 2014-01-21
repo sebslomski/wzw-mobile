@@ -20,7 +20,7 @@
                 return prefix + item;
             });
         }
-        return items.join(', ')
+        return items.join(', ');
     });
 
 

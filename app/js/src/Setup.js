@@ -7,7 +7,7 @@ $(function() {
         template = 'templates/' + template;
 
         if (!Handlebars.templates[template]) {
-            throw 'Template not found (' + template + ')';
+            throw new Error('Template not found (' + template + ')');
         }
         template = Handlebars.templates[template];
         return template(data);
@@ -45,7 +45,9 @@ $(function() {
         var args;
         return {
             on: function(event, handler) {
-                if (args) throw new Error("this is one off wrapper");
+                if (args) {
+                    throw new Error('this is one off wrapper');
+                }
                 el.addEventListener(event, handler, false);
                 args = [event, handler];
             },
@@ -54,5 +56,5 @@ $(function() {
             }
 
         };
-    }
+    };
 });
