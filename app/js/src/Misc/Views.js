@@ -16,6 +16,8 @@ App.module('Misc.Views', function(Views, App, Backbone, Marionette, $, _) {
 
         start: function() {
             App.overlay.close();
+
+            App.Core.Cookie.setCookieData({intro: true});
         }
     });
 
@@ -146,13 +148,18 @@ App.module('Misc.Views', function(Views, App, Backbone, Marionette, $, _) {
     });
 
     App.vent.on('App:start', function() {
-        var carouselView = new Views.IntroCarousel({
-            collection: new Backbone.Collection([
-                {template: 'Misc/Views/Intro1.html'},
-                {template: 'Misc/Views/Intro2.html'}
-            ])
-        });
 
-        App.overlay.show(carouselView);
+        var intro = App.Core.Cookie.getCookieData('intro');
+
+        if (!intro) {
+            var carouselView = new Views.IntroCarousel({
+                collection: new Backbone.Collection([
+                    {template: 'Misc/Views/Intro1.html'},
+                    {template: 'Misc/Views/Intro2.html'}
+                ])
+            });
+
+            App.overlay.show(carouselView);
+        }
     });
 });
