@@ -40,6 +40,8 @@ body {
 
 
 .overlay {
+    background: #6acec6;
+
     z-index: 1;
     visibility: hidden;
     opacity: 0;
@@ -58,6 +60,12 @@ body {
     }
 }
 
+
+body.standalone{
+    .overlay {
+        padding-top: 16px;
+    }
+}
 
 .hairline() {
     background-repeat: repeat-x;
