@@ -37,6 +37,9 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
             var data = Marionette.ItemView.prototype.serializeData.call(this);
 
             data.usernames = _.map(data.users, function(user) {
+                if (user.id === App.User.user.id) {
+                    return 'Du';
+                }
                 return user.first_name;
             });
 

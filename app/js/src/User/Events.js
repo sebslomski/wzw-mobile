@@ -26,9 +26,11 @@ App.module('User.Events', function(Events, App, Backbone, Marionette, $, _) {
 
 
     Events['App.User:loggedIn'] = function(options) {
+        App.User.user = new App.User.Models.User();
         App.Groups.groups = new App.Groups.Collections.Groups();
 
         var promises = [
+            App.User.user.fetch(),
             App.Groups.groups.fetch()
         ];
 

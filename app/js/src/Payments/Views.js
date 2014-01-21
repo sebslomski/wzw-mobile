@@ -27,6 +27,9 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
             var data = Marionette.ItemView.prototype.serializeData.call(this);
 
             data.usernames = _.map(data.users, function(user) {
+                if (user.id === App.User.user.id) {
+                    return 'Du';
+                }
                 return user.first_name;
             });
 
@@ -186,7 +189,9 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
                 purpose: this.$('input[name="payment-purpose"]').val(),
                 tags: this.getCurrentTagList()
             }).done(function() {
-                App.Core.Routing.showRoute('group', that.model.groupId, 'payment');
+                App.Groups.groups.get(that.model.groupId).fetch().done(function() {
+                    App.Core.Routing.showRoute('group', that.model.groupId, 'payment');
+                });
             });
         },
 

@@ -31,7 +31,7 @@ App.module('User.Models', function(Models, App, Backbone, Marionette, $, _) {
 
 
     Models.User = App.Core.Models.Core.extend({
-        urlRoot: '/users/me/',
+        urlRoot: '/user/me/',
 
         url: function() {
             return this.baseUrl() + this.urlRoot;
