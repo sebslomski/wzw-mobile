@@ -149,8 +149,7 @@ App.module('Misc.Views', function(Views, App, Backbone, Marionette, $, _) {
         var carouselView = new Views.IntroCarousel({
             collection: new Backbone.Collection([
                 {template: 'Misc/Views/Intro1.html'},
-                {template: 'Misc/Views/Intro2.html'},
-                {template: 'Misc/Views/Intro3.html'}
+                {template: 'Misc/Views/Intro2.html'}
             ])
         });
 
