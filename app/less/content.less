@@ -1,3 +1,13 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+
 .content {
     position: relative;
     padding-top: 44px;
@@ -136,6 +146,20 @@ form {
     }
 }
 
+button {
+    float: left;
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+
+    border: 1px solid #fff;
+    border-radius: 1px;
+    outline-width: 0;
+
+    background: #5bcac1;
+    color: #fff;
+}
+
 
 .user-auth {
     .header {
@@ -170,16 +194,21 @@ form {
 }
 
 
+.user-login-logo,
+.logo {
+    font-family: 'Grand Hotel';
+    font-weight: 400;
+    font-size: 140%;
+    color: #fff;
+}
+
 .user-login-logo {
     display: block;
     margin: 0 auto 25px;
     height: 55px;
 
-    font-weight: 400;
     font-size: 60px;
     text-align: center;
-    color: #fff;
-    font-family: 'Grand Hotel';
 }
 
 
@@ -379,4 +408,39 @@ input.payments-new-currency {
     background-position: center right;
     background-image: url(images/euro.png);
     background-size: 21px 38px;
+}
+
+
+.carousel {
+    width: 100%;
+
+    &, & > ul, & > ul > li {
+        overflow: hidden;
+        height: 100%;
+
+        transform: translate3d(0,0,0) scale3d(1,1,1);
+        -webkit-transform: translate3d(0,0,0) scale3d(1,1,1);
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+    }
+
+    &, & > ul {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+
+    & > ul, & > ul > li {
+        padding: 0;
+        margin: 0;
+    }
+
+    & > ul.animate {
+        transition: all .3s;
+        -webkit-transition: all .3s;
+    }
+
+    & > ul > li {
+        float: left;
+        display: block;
+    }
 }

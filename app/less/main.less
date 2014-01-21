@@ -1,10 +1,12 @@
 @import 'vendor/normalize';
 @import 'vendor/nprogress';
+@import (less) 'vendor/animate.css';
 
 @import url(http://fonts.googleapis.com/css?family=Grand+Hotel);
 
 @import 'header';
 @import 'content';
+@import 'misc';
 
 
 * {
@@ -24,6 +26,36 @@ body {
     line-height: 21px;
     font-family: -apple-system-font, 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif;
     font-weight: 400;
+}
+
+
+.viewport, .overlay {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+.overlay {
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+
+    &.s-is-visible {
+        z-index: 1000;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    &.hide {
+        opacity: 0;
+
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+    }
 }
 
 

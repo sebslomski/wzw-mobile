@@ -1,0 +1,67 @@
+@-webkit-keyframes swipe-left {
+    0%, 60% {
+        -webkit-transform: translateX(0);
+    }
+    45% {
+        -webkit-transform: translateX(-60px);
+    }
+}
+
+@keyframes swipe-left {
+    0%, 60% {
+        transform: translateX(0);
+    }
+    45% {
+        transform: translateX(-60px);
+    }
+}
+
+
+.misc-intro {
+    position: relative;
+    padding: 20px !important;
+
+    background: #6acec6;
+
+    color: #fff;
+    text-align: center;
+
+    h1 {
+        margin: 0;
+        margin-bottom: 20px;
+
+        font-family: 'Grand Hotel';
+        font-size: 48px;
+        line-height: 1;
+    }
+
+    p {
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+
+    footer {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+
+        text-align: center;
+
+        img {
+            width: 180px;
+            margin-left: 30px;
+            margin-bottom: -50px;
+
+            animation-name: swipe-left;
+            -webkit-animation-name: swipe-left;
+
+            animation-duration: 3s;
+            -webkit-animation-duration: 3s;
+
+            animation-iteration-count: infinite;
+            -webkit-animation-iteration-count: infinite;
+        }
+    }
+}
