@@ -8,5 +8,6 @@
     "domain": "wzw.purelabs.de",
     "expires": 100
   },
-  "staticUrl": "/static"
+  "staticUrl": "/static",
+  "googleAnalyticsId": "UA-47382098-1"
 }
