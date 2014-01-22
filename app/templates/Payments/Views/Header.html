@@ -1,3 +1,15 @@
 <div class="header-back">Zur&uuml;ck</div>
-<div class="header-title">{{ name }} <span>({{ list usernames }})</span></div>
+<div class="header-title">{{ name }}
+    <span>
+        (
+            {{# each users }}
+                {{# equal id me.id }}
+                    <span>Du</span>{{# unless @last }},{{/ unless }}
+                {{ else }}
+                    <span{{# unless claimed_at }} style="color: rgba(255, 255, 255, 0.4);"{{/ unless }}>{{ first_name }}</span>{{# unless @last }},{{/ unless }}
+                {{/ equal }}
+            {{/ each }}
+        )
+    </span>
+</div>
 <div class="header-new">&nbsp;</div>

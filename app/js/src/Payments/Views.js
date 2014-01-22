@@ -24,12 +24,7 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         serializeData: function() {
             var data = Marionette.ItemView.prototype.serializeData.call(this);
 
-            data.usernames = _.map(data.users, function(user) {
-                if (user.id === App.User.user.id) {
-                    return 'Du';
-                }
-                return user.first_name;
-            });
+            data.me = App.User.user.toJSON();
 
             return data;
         }
