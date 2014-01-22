@@ -45,11 +45,12 @@ App.module('User.Events', function(Events, App, Backbone, Marionette, $, _) {
             if (!_.isUndefined(App.fragment)) {
                 App.Core.Routing.showRoute(App.fragment);
                 delete App.fragment;
-            } else {
-                if (options && options.loadUrl) {
-                    Backbone.history.loadUrl();
-                }
             }
+
+            if (options && options.loadUrl) {
+                Backbone.history.loadUrl();
+            }
+
         });
     };
     App.vent.on('App.User:loggedIn', Events['App.User:loggedIn']);
@@ -65,6 +66,7 @@ App.module('User.Events', function(Events, App, Backbone, Marionette, $, _) {
         loginPromise
             .done(function() {
                 // Already logged in
+                App.fragment = Backbone.history.getFragment();
                 App.vent.trigger('App.User:loggedIn', {
                     loadUrl: true
                 });
