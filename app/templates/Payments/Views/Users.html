@@ -3,6 +3,7 @@
     {{# each active_users }}
         <li>
             {{ first_name }} {{ last_name }} ({{ email }})
+            <p>Beigetreten am {{ moment date_joined_group "DD.MM.YYYY" }}</p>
         </li>
     {{/ each }}
 </ul>
@@ -13,6 +14,7 @@
     {{# each invited_users }}
         <li>
             {{ first_name }} {{ last_name }} ({{ email }})
+            <p>Eingeladen am {{ moment date_joined_group "DD.MM.YYYY" }}</p>
         </li>
     {{/ each }}
 </ul>
