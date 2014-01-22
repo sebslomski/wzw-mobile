@@ -5,6 +5,7 @@ App.module('User.Routing', function(Routing, App, Backbone, Marionette, $, _) {
     Routing.Router = Marionette.AppRouter.extend({
         appRoutes: {
             'auth/login': 'showLogin',
+            'auth/claim/:claimId': 'showClaimAccount',
             'auth/logout': 'showLogout'
         },
         controller: App.User.Controller

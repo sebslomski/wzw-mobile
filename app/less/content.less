@@ -139,13 +139,10 @@ form {
     input[type=submit] {
         float: left;
         margin: 15px 0;
-
-        background: #5bcac1;
-
-        color: fade(#fff, 90%);
     }
 }
 
+form input[type=submit],
 button {
     float: left;
     width: 100%;
@@ -168,7 +165,8 @@ button {
 }
 
 
-.user-login {
+.user-login,
+.user-claim-account {
     margin-top: 16px;
 
     .form-panel {
@@ -179,19 +177,16 @@ button {
 
 
     form {
-        input {
+        input[type=email],
+        input[type=text],
+        input[type=password] {
             margin: 0;
 
             border: none;
         }
 
-        input[type=submit] {
-            background: fade(#fff, 90%);
-
-            color: #5bcac1;
-        }
-
-        input[type=email] {
+        input[type=email],
+        input[type=text] {
             background-repeat: repeat-x;
             background-position: bottom left;
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'><rect fill='#5bcac1' x='0' y='0' width='1' height='0.5'/></svg>");

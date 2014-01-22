@@ -37,4 +37,11 @@ App.module('User.Models', function(Models, App, Backbone, Marionette, $, _) {
             return this.baseUrl() + this.urlRoot;
         }
     });
+
+
+    Models.ClaimAccount = App.Core.Models.Core.extend({
+        url: function() {
+            return this.baseUrl() + '/auth/user/claim-account/' + this.claimId + '/';
+        }
+    });
 });

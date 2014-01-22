@@ -3,7 +3,7 @@
     <span>
         (
             {{# each users }}
-                {{# equal id me.id }}
+                {{# equal id ../me.id }}
                     <span>Du</span>{{# unless @last }},{{/ unless }}
                 {{ else }}
                     <span{{# unless claimed_at }} style="color: rgba(255, 255, 255, 0.4);"{{/ unless }}>{{ first_name }}</span>{{# unless @last }},{{/ unless }}

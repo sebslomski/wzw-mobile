@@ -13,6 +13,30 @@ App.module('User.Controller', function(Controller, App, Backbone, Marionette, $,
     };
 
 
+    Controller.showClaimAccount = function(claimId) {
+        NProgress.start();
+
+        var claimAccount = new App.User.Models.ClaimAccount();
+        claimAccount.claimId = claimId;
+
+        claimAccount.fetch()
+            .done(function() {
+                var contentView = new App.User.Views.ClaimAccount({
+                    model: claimAccount
+                });
+
+                var layout = new App.Core.Layouts.Main({
+                    contentView: contentView
+                });
+
+                App.viewport.show(layout);
+            })
+            .always(function() {
+                NProgress.done();
+            });
+    };
+
+
     Controller.showLogout = function() {
         var model = new App.User.Models.Logout();
         model.destroy()

@@ -2,7 +2,11 @@
 <ul class="group-settings-user-list list">
     {{# each active_users }}
         <li style="border-left-color: {{ color }};">
-            {{ first_name }} {{ last_name }} ({{ email }})
+            {{# equal id ../me.id }}
+                {{ first_name }} {{ last_name }} ({{ email }})
+            {{ else }}
+                <b>Du</b>, {{ first_name }} {{ last_name }} ({{ email }})
+            {{/ equal }}
             <p>Beigetreten am {{ moment date_joined_group "DD.MM.YYYY" }}</p>
         </li>
     {{/ each }}
