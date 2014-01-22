@@ -288,6 +288,8 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
 
             data.active_users = _.difference(data.users, data.invited_users);
 
+            data.me = App.User.user.toJSON();
+
             return data;
         }
     });
