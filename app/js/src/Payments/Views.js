@@ -351,7 +351,8 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
 
             this.collection.fetch({
                 data: {
-                    email: email
+                    email: email,
+                    group: this.model.groupId
                 }
             }).done(function() {
                 that.$(that.itemViewContainer).toggle(that.collection.length > 0);
