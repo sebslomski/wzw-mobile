@@ -2,24 +2,22 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
     'use strict';
 
 
-    Views.PaymentListHeader = Marionette.ItemView.extend({
-        template: 'Payments/Views/PaymentListHeader.html',
+    Views.Header = Marionette.ItemView.extend({
+        template: 'Payments/Views/Header.html',
 
         events: {
-            'click .header-new': 'newPayment',
+            'click .header-new': 'showNew',
             'click .header-back': 'back'
         },
 
 
         back: function(e) {
-            e.stopPropagation();
             App.Core.Routing.showRoute('group');
         },
 
 
-        newPayment: function(e) {
-            e.stopPropagation();
-            App.Core.Routing.showRoute('group/' + this.model.id + '/payment/new');
+        showNew: function(e) {
+            App.Core.Routing.showRoute('group/' + this.model.id + '/' + this.options.view + '/new');
         },
 
 
@@ -34,6 +32,28 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
             });
 
             return data;
+        }
+    });
+
+
+    Views.PaymentListFooter = Marionette.ItemView.extend({
+        template: 'Payments/Views/PaymentListFooter.html',
+
+        events: {
+            'click .payments-footer-payment': 'showPayments',
+            'click .payments-footer-user': 'showUsers',
+        },
+
+        showUsers: function(e) {
+            App.Core.Routing.showRoute('group/' + this.model.id + '/user');
+        },
+
+        showPayments: function(e) {
+            App.Core.Routing.showRoute('group/' + this.model.id + '/payment');
+        },
+
+        onRender: function() {
+            this.$('.payments-footer-' + this.options.view).addClass('s-is-active');
         }
     });
 
@@ -240,17 +260,64 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
     });
 
 
-    Views.NewPaymentHeader = Marionette.ItemView.extend({
-        template: 'Payments/Views/NewPaymentHeader.html',
+    Views.NewHeader = Marionette.ItemView.extend({
+        template: 'Payments/Views/NewHeader.html',
 
         events: {
             'click .header-back': 'back'
         },
 
+        back: function() {
+            App.Core.Routing.showRoute('group/' + this.model.id + '/' + this.options.view);
+        },
 
-        back: function(e) {
-            e.stopPropagation();
-            App.Core.Routing.showRoute('group/' + this.model.id + '/payment');
+        serializeData: function() {
+            var data = Marionette.ItemView.prototype.serializeData.call(this);
+
+            data.title = this.options.title;
+
+            return data;
+        }
+    });
+
+
+    Views.Users = Marionette.ItemView.extend({
+        template: 'Payments/Views/Users.html',
+
+        serializeData: function() {
+            var data = Marionette.ItemView.prototype.serializeData.call(this);
+
+            data.invited_users = _.filter(data.users, function(user) {
+                return _.isNull(user.claimed_at);
+            });
+
+            data.active_users = _.difference(data.users, data.invited_users);
+
+            return data;
+        }
+    });
+
+
+    Views.NewUser = Marionette.ItemView.extend({
+        template: 'Payments/Views/NewUser.html',
+
+        events: {
+            'submit form': 'submit'
+        },
+
+        submit: function(e) {
+            e.preventDefault();
+            var that = this;
+
+            this.model.save({
+                first_name: this.$('input[name="group-user-firstname"]').val(),
+                last_name: this.$('input[name="group-user-lastname"]').val(),
+                email: this.$('input[name="group-user-email"]').val()
+            }).done(function() {
+                App.Groups.groups.get(that.model.groupId).fetch().done(function() {
+                    App.Core.Routing.showRoute('group', that.model.groupId, 'user');
+                });
+            });
         }
     });
 });

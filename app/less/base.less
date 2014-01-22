@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+
+    font-size: 17px;
+    line-height: 21px;
+    font-family: -apple-system-font, 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 400;
+}
+
+
+.viewport, .overlay {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+.overlay {
+    background: #6acec6;
+
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+
+    &.s-is-visible {
+        z-index: 1000;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    &.hide {
+        opacity: 0;
+
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+    }
+}
+
+
+body.standalone{
+    .overlay {
+        padding-top: 16px;
+    }
+}
+
+.hairline() {
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    background-size: 100% 1px;
+    background-image: url(data:image/gif;base64,R0lGODlhAQACAPABAMjHzP///yH/C1hNUCBEYXRhWE1QAz94cAAh+QQFAAABACwAAAAAAQACAAACAgwKADs=);
+}
+
+
+#nprogress .bar {
+    z-index: 1010;
+    background: #fff;
+
+    .peg {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+    }
+}
+
+
+body.user-auth {
+    &, .content {
+        background: #5bcac1;
+    }
+}
+
+
+.core-layout {
+    height: 100%;
+}

@@ -1,0 +1,18 @@
+<h2>Freunde in der Gruppe</h2>
+<ul class="group-settings-user-list list">
+    {{# each active_users }}
+        <li>
+            {{ first_name }} {{ last_name }} ({{ email }})
+        </li>
+    {{/ each }}
+</ul>
+
+
+<h2>Eingeladene Freunde</h2>
+<ul class="group-settings-user-list list">
+    {{# each invited_users }}
+        <li>
+            {{ first_name }} {{ last_name }} ({{ email }})
+        </li>
+    {{/ each }}
+</ul>

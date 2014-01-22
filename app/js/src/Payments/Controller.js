@@ -2,6 +2,31 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
     'use strict';
 
 
+    Controller.showUsers = function(groupId) {
+        var headerView = new App.Payments.Views.Header({
+            model: App.Groups.groups.get(groupId),
+            view: 'user'
+        });
+
+        var footerView = new App.Payments.Views.PaymentListFooter({
+            model: App.Groups.groups.get(groupId),
+            view: 'user'
+        });
+
+        var contentView = new App.Payments.Views.Users({
+            model: App.Groups.groups.get(groupId)
+        });
+
+        var layout = new App.Core.Layouts.Main({
+            headerView: headerView,
+            contentView: contentView,
+            footerView: footerView
+        });
+
+        App.viewport.show(layout);
+    };
+
+
     Controller.showPayments = function(groupId) {
         NProgress.start();
         $('body').addClass('s-is-loading');
@@ -28,8 +53,14 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
                     });
                 });
 
-                var headerView = new App.Payments.Views.PaymentListHeader({
-                    model: App.Groups.groups.get(groupId)
+                var headerView = new App.Payments.Views.Header({
+                    model: App.Groups.groups.get(groupId),
+                    view: 'payment'
+                });
+
+                var footerView = new App.Payments.Views.PaymentListFooter({
+                    model: App.Groups.groups.get(groupId),
+                    view: 'payment'
                 });
 
                 var contentView = new App.Payments.Views.DayList({
@@ -39,7 +70,8 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
 
                 var layout = new App.Core.Layouts.Main({
                     headerView: headerView,
-                    contentView: contentView
+                    contentView: contentView,
+                    footerView: footerView
                 });
 
                 App.viewport.show(layout);
@@ -55,8 +87,10 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
         NProgress.start();
         $('body').addClass('s-is-loading');
 
-        var headerView = new App.Payments.Views.NewPaymentHeader({
-            model: App.Groups.groups.get(groupId)
+        var headerView = new App.Payments.Views.NewHeader({
+            model: App.Groups.groups.get(groupId),
+            view: 'payment',
+            title: 'Neue Zahlung'
         });
 
         var tags = new App.Payments.Collections.Tags([], {
@@ -83,5 +117,28 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
             NProgress.done();
             $('body').removeClass('s-is-loading');
         });
+    };
+
+
+    Controller.showNewUser = function(groupId) {
+        var headerView = new App.Payments.Views.NewHeader({
+            model: App.Groups.groups.get(groupId),
+            view: 'user',
+            title: 'Freund einladen'
+        });
+
+        var user = new App.Groups.Models.User();
+        user.groupId = groupId;
+
+        var contentView = new App.Payments.Views.NewUser({
+            model: user
+        });
+
+        var layout = new App.Core.Layouts.Main({
+            headerView: headerView,
+            contentView: contentView
+        });
+
+        App.viewport.show(layout);
     };
 });
