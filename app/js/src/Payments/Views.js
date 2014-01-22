@@ -295,11 +295,67 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
     });
 
 
-    Views.NewUser = Marionette.ItemView.extend({
-        template: 'Payments/Views/NewUser.html',
+    Views.NewUserItem = Marionette.ItemView.extend({
+        tagName: 'li',
 
         events: {
-            'submit form': 'submit'
+            'click ': 'selectUser'
+        },
+
+        selectUser: function() {
+            this.model.collection.trigger('selected', this.model);
+        },
+
+        render: function() {
+            this.$el.html(
+                this.model.get('first_name') +
+                ' ' +
+                this.model.get('last_name') +
+                ' (' +
+                this.model.get('email') +
+                ')'
+            );
+        }
+    });
+
+
+    Views.NewUser = Marionette.CompositeView.extend({
+        template: 'Payments/Views/NewUser.html',
+        itemView: Views.NewUserItem,
+        itemViewContainer: '.group-new-user-suggestions',
+
+        events: {
+            'submit form': 'submit',
+            'keyup input[name="group-user-email"]': 'keyupEmail'
+        },
+
+        initialize: function() {
+            this.listenTo(this.collection, 'selected', this.selectUser);
+        },
+
+        onRender: function() {
+            this.$(this.itemViewContainer).hide();
+        },
+
+        selectUser: function(user) {
+            this.$(this.itemViewContainer).hide();
+            this.$('input[name="group-user-firstname"]').val(user.get('first_name'));
+            this.$('input[name="group-user-lastname"]').val(user.get('last_name'));
+            this.$('input[name="group-user-email"]').val(user.get('email'));
+
+        },
+
+        keyupEmail: function(e) {
+            var email = $(e.currentTarget).val();
+            var that = this;
+
+            this.collection.fetch({
+                data: {
+                    email: email
+                }
+            }).done(function() {
+                that.$(that.itemViewContainer).toggle(that.collection.length > 0);
+            });
         },
 
         submit: function(e) {

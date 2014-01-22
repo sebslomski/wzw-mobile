@@ -130,8 +130,11 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
         var user = new App.Groups.Models.User();
         user.groupId = groupId;
 
+        var users = new App.User.Collections.Users();
+
         var contentView = new App.Payments.Views.NewUser({
-            model: user
+            model: user,
+            collection: users
         });
 
         var layout = new App.Core.Layouts.Main({
