@@ -6,13 +6,12 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
         template: 'Groups/Views/GroupListHeader.html',
 
         events: {
-            'click .header-refresh': 'refresh'
+            'click .header-new': 'showNew'
         },
 
 
-        refresh: function(e) {
-            e.stopPropagation();
-            App.Groups.groups.fetch();
+        showNew: function() {
+            App.Core.Routing.showRoute('group/new');
         }
     });
 
@@ -62,5 +61,39 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
         className: 'groups-list list',
         itemView: Views.GroupListItem,
         emptyView: Views.GroupListEmpty
+    });
+
+
+    Views.NewGroup = Marionette.ItemView.extend({
+        template: 'Groups/Views/NewGroup.html',
+
+        events: {
+            'submit form': 'submit'
+        },
+
+        submit: function(e) {
+            e.preventDefault();
+            var that = this;
+
+            this.model.save({
+                name: this.$('input[name="group-name"]').val()
+            }).done(function() {
+                App.Groups.groups.add(that.model);
+                App.Core.Routing.showRoute('group', that.model.id, 'payment');
+            });
+        }
+    });
+
+
+    Views.NewGroupHeader = Marionette.ItemView.extend({
+        template: 'Groups/Views/NewGroupHeader.html',
+
+        events: {
+            'click .header-back': 'back'
+        },
+
+        back: function() {
+            App.Core.Routing.showRoute('group/' + this.model.id);
+        }
     });
 });

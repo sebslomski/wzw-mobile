@@ -5,7 +5,8 @@ App.module('Groups.Routing', function(Routing, App, Backbone, Marionette, $, _) 
     Routing.Router = Marionette.AppRouter.extend({
         appRoutes: {
             '': 'showDefault',
-            'group': 'showGroups'
+            'group': 'showGroups',
+            'group/new': 'showNewGroup'
         },
         controller: App.Groups.Controller
     });
