@@ -1,7 +1,7 @@
 <h2>Freunde in der Gruppe</h2>
 <ul class="group-settings-user-list list">
     {{# each active_users }}
-        <li>
+        <li style="border-left-color: {{ color }};">
             {{ first_name }} {{ last_name }} ({{ email }})
             <p>Beigetreten am {{ moment date_joined_group "DD.MM.YYYY" }}</p>
         </li>
@@ -12,7 +12,7 @@
 <h2>Eingeladene Freunde</h2>
 <ul class="group-settings-user-list list">
     {{# each invited_users }}
-        <li>
+        <li style="border-left-color: {{ color }};">
             {{ first_name }} {{ last_name }} ({{ email }})
             <p>Eingeladen am {{ moment date_joined_group "DD.MM.YYYY" }}</p>
         </li>
