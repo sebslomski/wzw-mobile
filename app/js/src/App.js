@@ -54,6 +54,10 @@ var App = null;
 
         $('body').addClass('debug');
 
+        App.layout = new App.Core.Layouts.SwitchPane();
+
+        App.viewport.show(App.layout);
+
         Backbone.history.start({
             silent: true
         });

@@ -23,13 +23,15 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
             footerView: footerView
         });
 
-        App.viewport.show(layout);
+        App.layout.showView(layout, 'Groups.Users', {
+            'Groups.Groups': 'right',
+            'Groups.Users': 'right'
+        });
     };
 
 
     Controller.showPayments = function(groupId) {
         NProgress.start();
-        $('body').addClass('s-is-loading');
 
         var payments = new App.Payments.Collections.Payments([], {
             groupId: groupId
@@ -74,18 +76,19 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
                     footerView: footerView
                 });
 
-                App.viewport.show(layout);
+                App.layout.showView(layout, 'Groups.Payments', {
+                    'Groups.Groups': 'right',
+                    'Groups.Users': 'left'
+                });
             })
             .always(function() {
                 NProgress.done();
-                $('body').removeClass('s-is-loading');
             });
     };
 
 
     Controller.showNewPayment = function(groupId) {
         NProgress.start();
-        $('body').addClass('s-is-loading');
 
         var headerView = new App.Payments.Views.NewHeader({
             model: App.Groups.groups.get(groupId),
@@ -111,11 +114,12 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
                 contentView: contentView
             });
 
-            App.viewport.show(layout);
+            App.layout.showView(layout, 'Groups.Payments.NewPayment', {
+                'Groups.Payments': 'right'
+            });
         })
         .always(function() {
             NProgress.done();
-            $('body').removeClass('s-is-loading');
         });
     };
 
@@ -142,6 +146,8 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
             contentView: contentView
         });
 
-        App.viewport.show(layout);
+        App.layout.showView(layout, 'Groups.Users.NewUser', {
+            'Groups.Users': 'right'
+        });
     };
 });

@@ -19,7 +19,7 @@ App.module('Groups.Controller', function(Controller, App, Backbone, Marionette, 
             contentView: contentView
         });
 
-        App.viewport.show(layout);
+        App.layout.showView(layout, 'Groups.Groups', {});
     };
 
 
@@ -37,6 +37,6 @@ App.module('Groups.Controller', function(Controller, App, Backbone, Marionette, 
             contentView: contentView
         });
 
-        App.viewport.show(layout);
+        App.layout.showView(layout, 'Groups.NewGroup', {'Groups.Groups': 'right'});
     };
 });

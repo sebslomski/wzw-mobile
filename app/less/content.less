@@ -9,14 +9,14 @@
 
 
 .content {
-    position: relative;
-    padding-top: 44px;
-    height: 100%;
+    position: fixed;
+    top: 44px;
+    bottom: 0;
+    width: 100%;
+
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-
-    box-shadow: 0 0 16px rgba(0,0,0,0.2);
 
     h2 {
         margin: 0;
@@ -100,7 +100,7 @@
 
 body.s-has-footer {
     .content {
-        padding-bottom: 44px;
+        bottom: 44px;
     }
 }
 
@@ -359,7 +359,7 @@ body.debug {
 
 body.standalone {
     .content {
-        padding-top: 60px;
+        top: 60px;
     }
 }
 

@@ -9,7 +9,7 @@ App.module('User.Controller', function(Controller, App, Backbone, Marionette, $,
             contentView: contentView
         });
 
-        App.viewport.show(layout);
+        App.layout.showView(layout);
     };
 
 
@@ -29,7 +29,7 @@ App.module('User.Controller', function(Controller, App, Backbone, Marionette, $,
                     contentView: contentView
                 });
 
-                App.viewport.show(layout);
+                App.layout.showView(layout);
             })
             .always(function() {
                 NProgress.done();
