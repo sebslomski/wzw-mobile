@@ -9,12 +9,21 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
         showView: function(view, viewName, viewInfo) {
             // viewName is viewInfo[key] to key
 
-            var position;
             var that = this;
+
+            var PANEL_SPEED = 650;
+            var PANEL_EASING = 'cubic-bezier(0.23, 1, 0.32, 1)';
+
+            var position;
             var opposite = {
                 left: 'right',
                 right: 'left'
             };
+            var coefficient = {
+                left: 1,
+                right: -1
+            };
+
 
             if (this.currentViewName) {
                 if (viewInfo[this.currentViewName]) {
@@ -40,12 +49,6 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
             $newEl.append(view.el);
             this.$el.append($newEl);
 
-            var coefficient = {
-                left: 1,
-                right: -1
-            };
-
-
             if ($oldEl.length) {
                 var selector = '.core-layout > .header, .core-layout > .content, .core-layout > .footer';
 
@@ -57,18 +60,18 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
                 _.defer(function() {
                     $oldEl.find(selector).css({
                         transform: 'translateX(' + that.$el.width() * coefficient[position] + 'px)',
-                        transition: 'all 0.65s'
+                        transition: 'all ' + PANEL_SPEED / 1000  + 's ' + PANEL_EASING
 
                     });
                     $newEl.find(selector).css({
                         transform: 'translateX(0)',
-                        transition: 'all 0.65s'
+                        transition: 'all ' + PANEL_SPEED / 1000  + 's ' + PANEL_EASING
                     });
 
                     _.delay(function() {
                         $oldEl.remove();
                         oldView.close();
-                    }, 650);
+                    }, PANEL_SPEED);
                 });
             }
         }
