@@ -126,14 +126,11 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
     var VisibleRegion = Backbone.Marionette.Region.extend({
         open: function() {
             this.$el.addClass('s-is-visible');
-            $('body').addClass('s-has-footer');
             return Backbone.Marionette.Region.prototype.open.apply(this, arguments);
         },
 
         close: function() {
             var view = this.currentView;
-
-            $('body').removeClass('s-has-footer');
 
             if (!view || view.isClosed){
                 return;
