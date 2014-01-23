@@ -161,6 +161,7 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
 
             if (this.options.contentView) {
                 this.contentRegion.show(this.options.contentView);
+                var contentScroll = new ScrollFix(this.contentRegion.$el.get(0));
             }
 
             if (this.options.footerView) {
