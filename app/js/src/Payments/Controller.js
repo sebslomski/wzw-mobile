@@ -25,7 +25,7 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
 
         App.layout.showView(layout, 'Groups.Users', {
             'Groups.Groups': 'right',
-            'Groups.Users': 'right'
+            'Groups.Payments': 'fade'
         });
     };
 
@@ -78,7 +78,7 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
 
                 App.layout.showView(layout, 'Groups.Payments', {
                     'Groups.Groups': 'right',
-                    'Groups.Users': 'left'
+                    'Groups.Users': 'fade'
                 });
             })
             .always(function() {

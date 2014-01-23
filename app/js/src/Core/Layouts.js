@@ -40,7 +40,7 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
             this.currentViewName = viewName;
             this.currentViewInfo = viewInfo;
 
-            position = position || 'left';
+            position = position || 'fade';
 
             var $oldEl = this.$('.core-switch-pane-item');
             var $newEl = $('<div class="core-switch-pane-item"></div>');
@@ -49,20 +49,55 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
             $newEl.append(view.el);
             this.$el.append($newEl);
 
-            if ($oldEl.length) {
+            $oldEl.css({
+                opacity: 1,
+                transition: 'all 0s'
+            });
+
+            if (position === 'fade') {
+                $newEl.css({
+                    opacity: 0,
+                    transition: 'all 0s'
+                });
+
+                _.defer(function() {
+                    $oldEl.css({
+                        opacity: 0,
+                        transition: 'all ' + PANEL_SPEED / 1000 * 3/4 + 's'
+                    });
+
+                    $newEl.css({
+                        opacity: 1,
+                        transition: 'all ' + PANEL_SPEED / 1000 + 's'
+                    });
+
+                    if ($oldEl.length) {
+                        _.delay(function() {
+                            $oldEl.remove();
+                            oldView.close();
+                        }, PANEL_SPEED);
+                    }
+                });
+            } else {
                 var selector = '.core-layout > .header, .core-layout > .content, .core-layout > .footer';
 
                 $newEl.find(selector).css({
                     transform: 'translateX(' + this.$el.width() * coefficient[position] * -1 + 'px)',
-                    transition: 'all 0s'
+                    transition: 'all 0s',
+                    opacity: 1
+                });
+
+                $oldEl.find(selector).css({
+                    transition: 'all 0s',
+                    opacity: 1
                 });
 
                 _.defer(function() {
                     $oldEl.find(selector).css({
                         transform: 'translateX(' + that.$el.width() * coefficient[position] + 'px)',
                         transition: 'all ' + PANEL_SPEED / 1000  + 's ' + PANEL_EASING
-
                     });
+
                     $newEl.find(selector).css({
                         transform: 'translateX(0)',
                         transition: 'all ' + PANEL_SPEED / 1000  + 's ' + PANEL_EASING
