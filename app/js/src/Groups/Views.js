@@ -93,7 +93,7 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
         },
 
         back: function() {
-            App.Core.Routing.showRoute('group/' + this.model.id);
+            App.Core.Routing.showRoute('group');
         }
     });
 });
