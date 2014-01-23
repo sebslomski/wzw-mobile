@@ -54,6 +54,22 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
                 transition: 'all 0s'
             });
 
+            var closeView = function() {
+                _.delay(function() {
+                    $newEl.add($oldEl).css({
+                        position: 'relative',
+                        top: 'auto'
+                    });
+                    $oldEl.remove();
+                    oldView.close();
+                }, PANEL_SPEED);
+            };
+
+            $newEl.add($oldEl).css({
+                position: 'absolute',
+                top: 0
+            });
+
             if (position === 'fade') {
                 $newEl.css({
                     opacity: 0,
@@ -72,10 +88,7 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
                     });
 
                     if ($oldEl.length) {
-                        _.delay(function() {
-                            $oldEl.remove();
-                            oldView.close();
-                        }, PANEL_SPEED);
+                        closeView();
                     }
                 });
             } else {
@@ -103,10 +116,7 @@ App.module('Core.Layouts', function(Layouts, App, Backbone, Marionette, $, _) {
                         transition: 'all ' + PANEL_SPEED / 1000  + 's ' + PANEL_EASING
                     });
 
-                    _.delay(function() {
-                        $oldEl.remove();
-                        oldView.close();
-                    }, PANEL_SPEED);
+                    closeView();
                 });
             }
         }

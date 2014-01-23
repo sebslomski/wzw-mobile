@@ -9,10 +9,11 @@
 
 
 .content {
-    position: fixed;
-    top: 44px;
-    bottom: 0;
+    position: relative;
+    padding-top: 44px;
     width: 100%;
+    height: 100%;
+    min-height: 100%;
 
     overflow-x: hidden;
     overflow-y: auto;
@@ -100,7 +101,7 @@
 
 body.s-has-footer {
     .content {
-        bottom: 44px;
+        padding-bottom: 44px;
     }
 }
 
@@ -359,7 +360,7 @@ body.debug {
 
 body.standalone {
     .content {
-        top: 60px;
+        padding-top: 60px;
     }
 }
 
