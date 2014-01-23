@@ -5,6 +5,9 @@ App.module('User.Controller', function(Controller, App, Backbone, Marionette, $,
     Controller.showLogin = function() {
         var contentView = new App.User.Views.Login();
 
+        delete App.token;
+        App.Core.Cookie.unsetCookieDataItem('token');
+
         var layout = new App.Core.Layouts.Main({
             contentView: contentView
         });
@@ -15,6 +18,9 @@ App.module('User.Controller', function(Controller, App, Backbone, Marionette, $,
 
     Controller.showClaimAccount = function(claimId) {
         NProgress.start();
+
+        delete App.token;
+        App.Core.Cookie.unsetCookieDataItem('token');
 
         var claimAccount = new App.User.Models.ClaimAccount();
         claimAccount.claimId = claimId;
@@ -41,7 +47,7 @@ App.module('User.Controller', function(Controller, App, Backbone, Marionette, $,
         var model = new App.User.Models.Logout();
         model.destroy()
             .always(function() {
-                App.Core.Cookie.setCookieData(null);
+                App.Core.Cookie.unsetCookieDataItem('token');
                 App.Core.Routing.showRoute('', {silent: true});
                 window.location.reload();
             });

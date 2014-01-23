@@ -19,7 +19,8 @@ App.module('User.Events', function(Events, App, Backbone, Marionette, $, _) {
 
 
     Events['App.User:unauthorized'] = function() {
-        App.Core.Cookie.setCookieData(null);
+        delete App.token;
+        App.Core.Cookie.unsetCookieDataItem('token');
         window.location.reload();
     };
     App.vent.on('App.User:unauthorized', Events['App.User:unauthorized']);

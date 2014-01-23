@@ -39,4 +39,11 @@ App.module('Core.Cookie', function(Cookie, App, Backbone, Marionette, $, _) {
             }, App.options.cookie)
         );
     };
+
+
+    Cookie.unsetCookieDataItem = function(item) {
+        var data = this.getCookieData();
+        delete data['item'];
+        this.setCookieData(data);
+    };
 });
