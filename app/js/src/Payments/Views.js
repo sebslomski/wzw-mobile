@@ -210,8 +210,7 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
                 });
             }).fail(function() {
                 alert('Da stimmt was nicht. Bitte überprüfe deine Eingaben.');
-            }).always(function() {
-                that.laddaButton.stop()
+                that.laddaButton.stop();
             });
         },
 
@@ -384,7 +383,6 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
                 });
             }).fail(function() {
                 alert('Da stimmt was nicht. Bitte überprüfe deine Eingaben.');
-            }).always(function() {
                 that.laddaButton.stop();
             });
         }

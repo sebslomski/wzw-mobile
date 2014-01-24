@@ -39,8 +39,6 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
                     } else {
                         alert('Ihr Passwort stimmt nicht.');
                     }
-                })
-                .always(function() {
                     that.laddaButton.stop();
                 });
         },
@@ -88,7 +86,7 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
 
                     App.vent.trigger('App.User:loggedIn');
                 })
-                .always(function() {
+                .fail(function() {
                     that.laddaButton.stop();
                 });
         },

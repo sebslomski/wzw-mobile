@@ -83,7 +83,6 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
                 App.Core.Routing.showRoute('group', that.model.id, 'payment');
             }).fail(function() {
                 alert('Da stimmt was nicht. Bitte überprüfe deine Eingaben.');
-            }).always(function() {
                 that.laddaButton.stop();
             });
         },
