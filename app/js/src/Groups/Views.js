@@ -74,13 +74,22 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
         submit: function(e) {
             e.preventDefault();
             var that = this;
+            this.laddaButton.start();
 
             this.model.save({
                 name: this.$('input[name="group-name"]').val()
             }).done(function() {
                 App.Groups.groups.add(that.model);
                 App.Core.Routing.showRoute('group', that.model.id, 'payment');
+            }).fail(function() {
+                alert('Da stimmt was nicht. Bitte überprüfe deine Eingaben.');
+            }).always(function() {
+                that.laddaButton.stop();
             });
+        },
+
+        onRender: function() {
+            this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
         }
     });
 

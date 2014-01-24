@@ -14,6 +14,7 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
         login: function(e) {
             e.preventDefault();
             var that = this;
+            this.laddaButton.start();
 
             var data = {
                 email: this.$('input[name="user-email"]').val(),
@@ -38,11 +39,15 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
                     } else {
                         alert('Ihr Passwort stimmt nicht.');
                     }
+                })
+                .always(function() {
+                    that.laddaButton.stop();
                 });
         },
 
         onRender: function() {
             $('body').addClass('user-auth');
+            this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
         },
 
         onClose: function() {
@@ -63,6 +68,7 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
         claimAccount: function(e) {
             e.preventDefault();
             var that = this;
+            this.laddaButton.start();
 
             var data = {
                 email: this.$('input[name="user-claim-account-email"]').val(),
@@ -81,11 +87,15 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
                     });
 
                     App.vent.trigger('App.User:loggedIn');
+                })
+                .always(function() {
+                    that.laddaButton.stop();
                 });
         },
 
         onRender: function() {
             $('body').addClass('user-auth');
+            this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
         },
 
         onClose: function() {

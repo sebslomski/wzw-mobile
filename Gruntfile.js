@@ -32,6 +32,8 @@ module.exports = function(grunt) {
                 'app/js/lib/numeral.min.js',
                 'app/js/lib/numeral.lang.de.js',
                 'app/js/lib/hammer.js',
+                'app/js/lib/spin.js',
+                'app/js/lib/ladda.js',
                 'app/js/lib/scrollfix.js'
             ],
             src: [

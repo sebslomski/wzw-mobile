@@ -198,6 +198,7 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         submit: function(e) {
             e.preventDefault();
             var that = this;
+            this.laddaButton.start()
 
             this.model.save({
                 amount: this.$('input[name="payment-amount"]').val().replace(',', '.'),
@@ -207,6 +208,10 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
                 App.Groups.groups.get(that.model.groupId).fetch().done(function() {
                     App.Core.Routing.showRoute('group', that.model.groupId, 'payment');
                 });
+            }).fail(function() {
+                alert('Da stimmt was nicht. Bitte überprüfe deine Eingaben.');
+            }).always(function() {
+                that.laddaButton.stop()
             });
         },
 
@@ -251,6 +256,10 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
             data.tags = this.options.tags.toJSON();
 
             return data;
+        },
+
+        onRender: function() {
+            this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
         }
     });
 
@@ -335,6 +344,7 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
 
         onRender: function() {
             this.$(this.itemViewContainer).hide();
+            this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
         },
 
         selectUser: function(user) {
@@ -362,6 +372,7 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         submit: function(e) {
             e.preventDefault();
             var that = this;
+            this.laddaButton.start();
 
             this.model.save({
                 first_name: this.$('input[name="group-user-firstname"]').val(),
@@ -371,6 +382,10 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
                 App.Groups.groups.get(that.model.groupId).fetch().done(function() {
                     App.Core.Routing.showRoute('group', that.model.groupId, 'user');
                 });
+            }).fail(function() {
+                alert('Da stimmt was nicht. Bitte überprüfe deine Eingaben.');
+            }).always(function() {
+                that.laddaButton.stop();
             });
         }
     });
