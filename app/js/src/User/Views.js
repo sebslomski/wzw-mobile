@@ -46,6 +46,12 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
         onRender: function() {
             $('body').addClass('user-auth');
             this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
+
+            var intro = App.Core.Cookie.getCookieData('intro');
+
+            if (intro) {
+                this.$('input[name="user-email"]').focus();
+            }
         },
 
         onClose: function() {
@@ -94,6 +100,12 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
         onRender: function() {
             $('body').addClass('user-auth');
             this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
+
+            var intro = App.Core.Cookie.getCookieData('intro');
+
+            if (intro) {
+                this.$('input[name="user-claim-account-password"]').focus();
+            }
         },
 
         onClose: function() {
