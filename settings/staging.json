@@ -9,5 +9,6 @@
     "expires": 100
   },
   "staticUrl": "/static",
-  "googleAnalyticsId": "UA-47382098-1"
+  "googleAnalyticsId": "UA-47382098-1",
+  "sentryId": "https://f770ac938f9b400982eb2ca3402734fa@app.getsentry.com/18337"
 }

@@ -76,5 +76,10 @@ var App = null;
             ga('send', 'pageview');
             /* jshint ignore:end */
         }
+
+
+        if (options.sentryId) {
+            Raven.config(options.sentryId, {}).install();
+        }
     });
 })();

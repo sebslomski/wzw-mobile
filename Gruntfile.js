@@ -34,7 +34,9 @@ module.exports = function(grunt) {
                 'app/js/lib/hammer.js',
                 'app/js/lib/spin.js',
                 'app/js/lib/ladda.js',
-                'app/js/lib/scrollfix.js'
+                'app/js/lib/scrollfix.js',
+                'app/js/lib/raven.js',
+                'app/js/lib/raven.jquery.js'
             ],
             src: [
                 'app/js/src/Setup.js',
@@ -159,7 +161,13 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'app/images/',
                 src: '**/*',
-                dest: 'dist/static/images/',
+                dest: 'dist/static/images/'
+            },
+            maps: {
+                expand: true,
+                cwd: 'app/js/maps/',
+                src: '*',
+                dest: 'dist/static/'
             }
         },
 
@@ -213,7 +221,7 @@ module.exports = function(grunt) {
     });
 
 
-    grunt.registerTask('build', ['clean', 'handlebars', 'concat', 'less:development', 'compile-index:development', 'copy', 'notify:build']);
+    grunt.registerTask('build', ['clean', 'jshint', 'handlebars', 'concat', 'less:development', 'compile-index:development', 'copy', 'notify:build']);
     grunt.registerTask('default', ['build']);
     grunt.registerTask('dev', ['jshint', 'build', 'connect', 'watch']);
     grunt.registerTask('staging', ['clean', 'handlebars', 'concat', 'less:development', 'compile-index:staging', 'copy']);
