@@ -8,6 +8,11 @@ App.module('Groups.Controller', function(Controller, App, Backbone, Marionette, 
 
 
     Controller.showGroups = function() {
+        if (App.Groups.groups.length === 0) {
+            App.Core.Routing.showRoute('group/new');
+            return;
+        }
+
         var contentView = new App.Groups.Views.GroupList({
             collection: App.Groups.groups
         });

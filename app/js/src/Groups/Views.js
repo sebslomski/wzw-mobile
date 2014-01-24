@@ -9,9 +9,16 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
             'click .header-new': 'showNew'
         },
 
-
         showNew: function() {
             App.Core.Routing.showRoute('group/new');
+        },
+
+        serializeData: function() {
+            var data = Marionette.ItemView.prototype.serializeData.call(this);
+
+            data.hasNoGroups = App.Groups.groups.length === 0;
+
+            return data;
         }
     });
 
@@ -25,12 +32,10 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
             'click ': 'showPayments'
         },
 
-
         showPayments: function(e) {
             e.stopPropagation();
             App.Core.Routing.showRoute('group/' + this.model.id + '/payment');
         },
-
 
         serializeData: function() {
             var data = Marionette.ItemView.prototype.serializeData.call(this);
