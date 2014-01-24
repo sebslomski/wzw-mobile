@@ -16,8 +16,6 @@ App.module('Misc.Views', function(Views, App, Backbone, Marionette, $, _) {
 
         start: function() {
             App.overlay.close();
-
-            App.Core.Cookie.setCookieData({intro: true});
         }
     });
 
@@ -207,5 +205,71 @@ App.module('Misc.Views', function(Views, App, Backbone, Marionette, $, _) {
 
             return data;
         }
+    });
+
+
+    Views.InviteHeader = Marionette.ItemView.extend({
+        template: 'Misc/Views/InviteHeader.html',
+
+        events: {
+            'click .header-close': 'showBack'
+        },
+
+        showBack: function() {
+            App.Core.Routing.showRoute('settings');
+        }
+    });
+
+
+    Views.Invite = Marionette.ItemView.extend({
+        className: 'misc-invite',
+        template: 'Misc/Views/Invite.html',
+
+        events: {
+            'submit form': 'submit',
+            'keyup input[name="invite-user-email"]': 'keyupEmail'
+        },
+
+        initialize: function() {
+            this.users = new App.User.Collections.Users();
+        },
+
+        onRender: function() {
+            this.$('.misc-settings-already-invited').hide();
+            this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
+        },
+
+        submit: function(e) {
+            e.preventDefault();
+            var that = this;
+            this.laddaButton.start();
+
+            this.model.save({
+                first_name: this.$('input[name="invite-user-firstname"]').val(),
+                last_name: this.$('input[name="invite-user-lastname"]').val(),
+                email: this.$('input[name="invite-user-email"]').val()
+            }).done(function() {
+                App.Core.Routing.showRoute('settings');
+            }).fail(function() {
+                alert('Da stimmt was nicht. Bitte überprüfe deine Eingaben.');
+                that.laddaButton.stop();
+            });
+        },
+
+        keyupEmail: function(e) {
+            var email = $(e.currentTarget).val();
+            var that = this;
+
+            this.users.fetch({
+                data: {
+                    email: email,
+                    strict: true
+                }
+            }).done(function() {
+                that.$('[type="submit"]').attr('disabled', Boolean(that.users.length));
+                that.$('[type="text"]').attr('disabled', Boolean(that.users.length));
+                that.$('.misc-settings-already-invited').toggle(Boolean(that.users.length));
+            });
+        },
     });
 });

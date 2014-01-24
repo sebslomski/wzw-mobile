@@ -162,12 +162,6 @@ module.exports = function(grunt) {
                 cwd: 'app/images/',
                 src: '**/*',
                 dest: 'dist/static/images/'
-            },
-            maps: {
-                expand: true,
-                cwd: 'app/js/maps/',
-                src: '*',
-                dest: 'dist/static/'
             }
         },
 

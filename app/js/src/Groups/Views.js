@@ -7,7 +7,7 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
 
         events: {
             'click .header-new': 'showNew',
-            'click .header-back': 'showSettings'
+            'click .header-settings': 'showSettings'
         },
 
         showNew: function() {

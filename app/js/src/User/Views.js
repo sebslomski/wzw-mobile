@@ -32,6 +32,8 @@ App.module('User.Views', function(Views, App, Backbone, Marionette, $, _) {
                     });
 
                     App.vent.trigger('App.User:loggedIn');
+
+                    App.Core.Cookie.setCookieData({intro: true});
                 })
                 .fail(function(res) {
                     if (res.status === 401) {

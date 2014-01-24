@@ -157,6 +157,10 @@ form {
         line-height: 21px;
         font-family: -apple-system-font, 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif;
         color: #000;
+
+        &[disabled] {
+            background: #f7f7f7;
+        }
     }
 
     [type=submit] {
@@ -178,6 +182,12 @@ button {
 
     background: #5bcac1;
     color: #fff;
+
+    &[disabled] {
+        background: desaturate(#5bcac1, 20%);
+
+        color: desaturate(#fff, 20%);
+    }
 }
 
 

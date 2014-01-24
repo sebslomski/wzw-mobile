@@ -16,4 +16,22 @@ App.module('Misc.Controller', function(Controller, App, Backbone, Marionette, $,
             'Groups.Groups': 'left'
         });
     };
+
+
+    Controller.showInvite = function() {
+        var headerView = new App.Misc.Views.InviteHeader();
+
+        var contentView = new App.Misc.Views.Invite({
+            model: new App.Misc.Models.Invite()
+        });
+
+        var layout = new App.Core.Layouts.Main({
+            headerView: headerView,
+            contentView: contentView
+        });
+
+        App.layout.showView(layout, 'Misc.Invite', {
+            'Groups.Groups': 'fade'
+        });
+    };
 });
