@@ -6,11 +6,16 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
         template: 'Groups/Views/GroupListHeader.html',
 
         events: {
-            'click .header-new': 'showNew'
+            'click .header-new': 'showNew',
+            'click .header-back': 'showSettings'
         },
 
         showNew: function() {
             App.Core.Routing.showRoute('group/new');
+        },
+
+        showSettings: function() {
+            App.Core.Routing.showRoute('settings');
         },
 
         serializeData: function() {

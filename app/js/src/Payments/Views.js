@@ -61,7 +61,7 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
             var color = this.model.get('user').color;
             if (color) {
                 this.$el.css({
-                    'border-left-color': color
+                    'border-left': '16px solid ' + color
                 });
             }
         }
@@ -80,6 +80,7 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
 
 
     Views.NoDayListItems = Marionette.ItemView.extend({
+        tagName: 'li',
         className: 'payments-no-day-list-items',
 
         render: function() {

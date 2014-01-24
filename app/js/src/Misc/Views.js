@@ -163,4 +163,30 @@ App.module('Misc.Views', function(Views, App, Backbone, Marionette, $, _) {
             App.overlay.show(carouselView);
         }
     });
+
+
+    Views.SettingsHeader = Marionette.ItemView.extend({
+        template: 'Misc/Views/SettingsHeader.html',
+
+        events: {
+            'click .header-back': 'showBack'
+        },
+
+        showBack: function() {
+            App.Core.Routing.showRoute('group');
+        }
+    });
+
+
+    Views.Settings = Marionette.ItemView.extend({
+        template: 'Misc/Views/Settings.html',
+
+        serializeData: function() {
+            var data = Marionette.ItemView.prototype.serializeData.call(this);
+
+            data.user = App.User.user.toJSON();
+
+            return data;
+        }
+    });
 });
