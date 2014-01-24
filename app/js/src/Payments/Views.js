@@ -198,7 +198,7 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         submit: function(e) {
             e.preventDefault();
             var that = this;
-            this.laddaButton.start()
+            this.laddaButton.start();
 
             this.model.save({
                 amount: this.$('input[name="payment-amount"]').val().replace(',', '.'),
