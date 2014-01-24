@@ -43,7 +43,7 @@ App.module('Core.Cookie', function(Cookie, App, Backbone, Marionette, $, _) {
 
     Cookie.unsetCookieDataItem = function(item) {
         var data = this.getCookieData();
-        delete data['item'];
+        delete data[item];
         this.setCookieData(data);
     };
 });
