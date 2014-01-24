@@ -52,7 +52,9 @@ var App = null;
             $('body').addClass('standalone');
         }
 
-        $('body').addClass('debug');
+        if (navigator.userAgent.match(/(iPad|iPhone|iPod)/g)) {
+            $('body').addClass('ios');
+        }
 
         App.layout = new App.Core.Layouts.SwitchPane();
 

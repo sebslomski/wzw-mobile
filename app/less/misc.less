@@ -38,6 +38,7 @@
     p {
         font-size: 20px;
         line-height: 1.5;
+        color: #fff;
 
         .logo {
             line-height: 1;
@@ -81,4 +82,56 @@
 
     border: 1px solid #fff;
     border-radius: 1px;
+}
+
+
+.misc-settings {
+    .list {
+        li {
+            line-height: 26px;
+        }
+    }
+}
+
+.misc-settings-install {
+    display: none;
+    position: fixed;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    z-index: 1010;
+
+    p {
+        padding: 0;
+
+        text-align: center;
+    }
+}
+
+
+
+body.ios {
+    .misc-settings-install {
+        display: block;
+    }
+
+    &.standalone {
+        .misc-settings-install {
+            display: none;
+        }
+    }
+}
+
+
+
+.misc-settings-install-arrow {
+    float: left;
+    margin-top: 3px;
+    height: 23px;
+    width: 100%;
+
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image: url(images/add-to-homescreen-arrow.png);
+    background-size: 24px 23px;
 }

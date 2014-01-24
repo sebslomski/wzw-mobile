@@ -6,5 +6,6 @@
     "name": "haushalt",
     "expires": 1
   },
+  "feedbackEmail": "wer-zahlt-was@purelabs.de",
   "staticUrl": "/static"
 }

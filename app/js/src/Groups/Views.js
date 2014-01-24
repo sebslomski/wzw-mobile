@@ -68,7 +68,7 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
 
     Views.GroupList = Marionette.CollectionView.extend({
         tagName: 'ul',
-        className: 'groups-list list',
+        className: 'list list-padded',
         itemView: Views.GroupListItem,
         emptyView: Views.GroupListEmpty
     });

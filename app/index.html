@@ -20,7 +20,9 @@
 
         <link rel="stylesheet" type="text/css" href="<%= data.staticUrl %>/build.css?<%= now %>">
 
+        <% if (!data.debug) { %>
         <link href='//fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
+        <% } %>
 
         <script src="<%= data.staticUrl %>/build.js?<%= now %>"></script>
 

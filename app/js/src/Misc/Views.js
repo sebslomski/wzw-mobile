@@ -180,6 +180,25 @@ App.module('Misc.Views', function(Views, App, Backbone, Marionette, $, _) {
 
     Views.Settings = Marionette.ItemView.extend({
         template: 'Misc/Views/Settings.html',
+        className: 'misc-settings',
+
+        events: {
+            'click #settings-feedback': 'showFeedback',
+            'click #settings-invite': 'showInvite',
+            'click #settings-logout': 'showLogout'
+        },
+
+        showLogout: function() {
+            App.Core.Routing.showRoute('auth/logout');
+        },
+
+        showInvite: function() {
+            App.Core.Routing.showRoute('invite');
+        },
+
+        showFeedback: function() {
+            window.location.href = 'mailto:' + App.options.feedbackEmail + '?subject=Feedback';
+        },
 
         serializeData: function() {
             var data = Marionette.ItemView.prototype.serializeData.call(this);

@@ -9,6 +9,7 @@
     "expires": 100
   },
   "staticUrl": "/static",
+  "feedbackEmail": "wer-zahlt-was@purelabs.de",
   "googleAnalyticsId": "UA-47382098-1",
   "sentryId": "https://f770ac938f9b400982eb2ca3402734fa@app.getsentry.com/18337"
 }
