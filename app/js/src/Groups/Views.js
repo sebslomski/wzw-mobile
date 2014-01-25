@@ -15,7 +15,8 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
         },
 
         showSettings: function() {
-            App.Core.Routing.showRoute('settings');
+            App.Core.Routing.showRoute('', {silent: true});
+            App.Misc.Controller.showSettings();
         },
 
         serializeData: function() {

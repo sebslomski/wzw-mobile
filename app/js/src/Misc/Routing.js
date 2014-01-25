@@ -3,7 +3,6 @@ App.module('Misc.Routing', function(Routing, App, Backbone, Marionette, $, _) {
 
     Routing.Router = Marionette.AppRouter.extend({
         appRoutes: {
-            'settings': 'showSettings',
             'invite': 'showInvite'
         },
         controller: App.Misc.Controller

@@ -3,14 +3,9 @@ App.module('User.Events', function(Events, App, Backbone, Marionette, $, _) {
 
 
     Events['App.User:login'] = function() {
-        App.fragment = Backbone.history.getFragment();
-
-        // If current url is not login, change the url silently
-        if (App.fragment.indexOf('auth') !== 0) {
-            App.Core.Routing.showRoute('/auth/login', {
-                silent: true
-            });
-        }
+        App.Core.Routing.showRoute('/auth/login', {
+            silent: true
+        });
 
         // now load the url to show the view
         Backbone.history.loadUrl();
@@ -36,17 +31,7 @@ App.module('User.Events', function(Events, App, Backbone, Marionette, $, _) {
         ];
 
         $.when.apply($.when, promises).done(function() {
-            // Set the fragment to '' (default route) if the current
-            // fragment is 'user/login' to prevent circular routing.
-            //var fragment = Backbone.history.getFragment();
-            if (App.fragment && App.fragment.indexOf('auth') === 0) {
-                App.fragment = '';
-            }
-
-            if (!_.isUndefined(App.fragment)) {
-                App.Core.Routing.showRoute(App.fragment);
-                delete App.fragment;
-            }
+            App.Core.Routing.showRoute('group');
 
             if (options && options.loadUrl) {
                 Backbone.history.loadUrl();
@@ -67,7 +52,6 @@ App.module('User.Events', function(Events, App, Backbone, Marionette, $, _) {
         loginPromise
             .done(function() {
                 // Already logged in
-                App.fragment = Backbone.history.getFragment();
                 App.vent.trigger('App.User:loggedIn', {
                     loadUrl: true
                 });
