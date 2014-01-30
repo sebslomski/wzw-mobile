@@ -17,14 +17,6 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
         showSettings: function() {
             App.Core.Routing.showRoute('', {silent: true});
             App.Misc.Controller.showSettings();
-        },
-
-        serializeData: function() {
-            var data = Marionette.ItemView.prototype.serializeData.call(this);
-
-            data.hasNoGroups = App.Groups.groups.length === 0;
-
-            return data;
         }
     });
 
@@ -113,6 +105,14 @@ App.module('Groups.Views', function(Views, App, Backbone, Marionette, $, _) {
 
         back: function() {
             App.Core.Routing.showRoute('group');
+        },
+
+        serializeData: function() {
+            var data = Marionette.ItemView.prototype.serializeData.call(this);
+
+            data.hasNoGroups = App.Groups.groups.length === 0;
+
+            return data;
         }
     });
 });
