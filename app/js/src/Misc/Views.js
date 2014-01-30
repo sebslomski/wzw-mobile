@@ -121,7 +121,7 @@ App.module('Misc.Views', function(Views, App, Backbone, Marionette, $, _) {
         },
 
         showBack: function() {
-            App.Core.Routing.showRoute('settings');
+            App.Core.Routing.showRoute('');
         }
     });
 
@@ -154,7 +154,7 @@ App.module('Misc.Views', function(Views, App, Backbone, Marionette, $, _) {
                 last_name: this.$('input[name="invite-user-lastname"]').val(),
                 email: this.$('input[name="invite-user-email"]').val()
             }).done(function() {
-                App.Core.Routing.showRoute('settings');
+                App.Core.Routing.showRoute('');
             }).fail(function() {
                 alert('Da stimmt was nicht. Bitte überprüfe deine Eingaben.');
                 that.laddaButton.stop();
