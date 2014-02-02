@@ -155,7 +155,7 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
 
 
     Controller.showNewUser = function(groupId) {
-        var headerView = new App.Payments.Views.NewHeader({
+        var headerView = new App.Payments.Views.PaymentHeader({
             model: App.Groups.groups.get(groupId),
             view: 'user',
             title: 'Freund einladen'
