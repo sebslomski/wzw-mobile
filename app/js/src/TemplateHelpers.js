@@ -14,7 +14,14 @@
     });
 
 
+    Handlebars.registerHelper('replace', function(value, a, b) {
+        return value.replace(a, b);
+    });
+
+
     Handlebars.registerHelper('list', function(items, prefix) {
+        items = items || [];
+
         if (_.isString(prefix)) {
             items = _.map(items, function(item) {
                 return prefix + item;

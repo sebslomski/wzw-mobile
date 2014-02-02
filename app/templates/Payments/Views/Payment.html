@@ -1,0 +1,28 @@
+<form>
+    <div class="form-panel">
+        {{# unless isOwner }}
+            <p>Du kannst nur eigene Zahlungen &auml;ndern.</p>
+        {{/ unless }}
+
+        <input type="text" name="payment-amount" spellcheck="false" {{# if isOwner }}autofocus{{/ if }} placeholder="Betrag" class="payments-new-currency" value={{ replace amount "." "," }}>
+        <input type="text" name="payment-purpose" spellcheck="false" placeholder="Verwendungszweck (optional)" value="{{ purpose }}">
+        <input type="text" name="payment-tags" spellcheck="false" placeholder="Tags (optional, z.B. 'Essen, Urlaub')" value="{{ list tags }}">
+        <div class="payments-new-tags">
+            <ul>
+                {{# each tagList }}
+                    <li>{{ name }}</li>
+                {{/ each }}
+            </ul>
+        </div>
+    </div>
+
+    {{# if isOwner }}
+        <button type="submit" class="ladda-button" data-style="zoom-in">
+            {{# if id }}
+                Zahlung speichern
+            {{ else }}
+                Zahlung eintragen
+            {{/ if }}
+        </button>
+    {{/ if }}
+</form>

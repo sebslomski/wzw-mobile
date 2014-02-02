@@ -87,24 +87,44 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
     };
 
 
-    Controller.showNewPayment = function(groupId) {
+    Controller.showPayment = function(groupId, paymentId) {
         NProgress.start();
 
-        var headerView = new App.Payments.Views.NewHeader({
+        var headerTitle;
+
+        if (_.isUndefined(paymentId)) {
+            headerTitle = 'Neue Zahlung';
+        } else {
+            headerTitle = 'Zahlung bearbeiten';
+        }
+
+        var headerView = new App.Payments.Views.PaymentHeader({
             model: App.Groups.groups.get(groupId),
             view: 'payment',
-            title: 'Neue Zahlung'
+            title: headerTitle
         });
 
         var tags = new App.Payments.Collections.Tags([], {
             groupId: groupId
         });
 
-        tags.fetch().done(function() {
-            var payment = new App.Payments.Models.Payment();
-            payment.groupId = groupId;
+        var payment = new App.Payments.Models.Payment();
+        payment.groupId = groupId;
 
-            var contentView = new App.Payments.Views.NewPayment({
+        var paymentPromise;
+
+        if (_.isUndefined(paymentId)) {
+            paymentPromise = $.Deferred().resolve();
+        } else {
+            payment.set({
+                id: paymentId
+            });
+            paymentPromise = payment.fetch();
+        }
+
+        $.when(tags.fetch(), paymentPromise).done(function() {
+
+            var contentView = new App.Payments.Views.Payment({
                 model: payment,
                 tags: tags
             });
@@ -114,7 +134,7 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
                 contentView: contentView
             });
 
-            App.layout.showView(layout, 'Groups.Payments.NewPayment', {
+            App.layout.showView(layout, 'Groups.Payments.Payment', {
                 'Groups.Payments': 'right'
             });
         })

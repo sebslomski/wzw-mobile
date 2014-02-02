@@ -6,7 +6,8 @@ App.module('Payments.Routing', function(Routing, App, Backbone, Marionette, $, _
             'group/:group_id/payment': 'showPayments',
             'group/:group_id/user': 'showUsers',
             'group/:group_id/user/new': 'showNewUser',
-            'group/:group_id/payment/new': 'showNewPayment'
+            'group/:group_id/payment/new': 'showPayment',
+            'group/:group_id/payment/:payment_id': 'showPayment'
         },
         controller: App.Payments.Controller
     });

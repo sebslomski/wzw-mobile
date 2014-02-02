@@ -57,6 +57,14 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         tagName: 'li',
         template: 'Payments/Views/PaymentListItem.html',
 
+        events: {
+            'click ': 'showPayment'
+        },
+
+        showPayment: function() {
+            App.Core.Routing.showRoute('group/' + this.model.get('group') + '/payment/' + this.model.id);
+        },
+
         onRender: function() {
             var color = this.model.get('user').color;
             if (color) {
@@ -178,8 +186,9 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
     });
 
 
-    Views.NewPayment = Marionette.ItemView.extend({
-        template: 'Payments/Views/NewPayment.html',
+    Views.Payment = Marionette.ItemView.extend({
+        className: 'payments-payment',
+        template: 'Payments/Views/Payment.html',
 
         events: {
             'submit form': 'submit',
@@ -216,6 +225,10 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         },
 
         toggleTag: function(e) {
+            if (!this.model.isOwner()) {
+                return;
+            }
+
             var $tag = this.$(e.currentTarget);
             $tag.toggleClass('s-is-selected');
             var isSelected = $tag.hasClass('s-is-selected');
@@ -235,8 +248,8 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
             $tags.val(_.uniq(tagList).join(', '));
         },
 
-        tagsKeyup: function(e) {
-            var $tags = this.$(e.currentTarget);
+        tagsKeyup: function() {
+            var $tags = this.$('input[name="payment-tags"]');
             var tagList = this.getCurrentTagList();
 
             var selectedTags = _.intersection(this.options.tags.pluck('name'), tagList);
@@ -253,19 +266,28 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
         serializeData: function() {
             var data = Marionette.ItemView.prototype.serializeData.call(this);
 
-            data.tags = this.options.tags.toJSON();
+            data.tagList = this.options.tags.toJSON();
+
+            data.isOwner = this.model.isOwner();
 
             return data;
         },
 
         onRender: function() {
-            this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
+            this.tagsKeyup();
+
+            if (!this.model.isOwner()) {
+                this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
+
+                this.$('input').attr('readonly', true);
+                this.$el.addClass('s-is-readonly');
+            }
         }
     });
 
 
-    Views.NewHeader = Marionette.ItemView.extend({
-        template: 'Payments/Views/NewHeader.html',
+    Views.PaymentHeader = Marionette.ItemView.extend({
+        template: 'Payments/Views/PaymentHeader.html',
 
         events: {
             'click .header-back': 'back'
