@@ -402,6 +402,22 @@ body.standalone {
 }
 
 
+footer .payments-payment-delete-wrapper {
+    display: block;
+    width: auto;
+    margin: 2px 16px;
+}
+
+
+.payments-payment-delete {
+    background: #d17474;
+
+    &[disabled] {
+        background: desaturate(#d17474, 20%);
+    }
+}
+
+
 input.payments-new-currency {
     background-repeat: no-repeat;
     background-position: center right;

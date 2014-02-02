@@ -282,6 +282,40 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
                 this.$('input').attr('readonly', true);
                 this.$el.addClass('s-is-readonly');
             }
+
+            if (this.model.id && this.model.isOwner()) {
+            }
+        }
+    });
+
+
+    Views.DeletePayment = Marionette.ItemView.extend({
+        className: 'payments-payment-delete-wrapper',
+        template: 'Payments/Views/DeletePayment.html',
+
+        events: {
+            'click .payments-payment-delete': 'deletePayment'
+        },
+
+        deletePayment: function(e) {
+            var that = this;
+            this.laddaButton.start();
+
+            var res = confirm('Möchtest du diese Zahlung wirklich löschen?');
+
+            if (res) {
+                this.model.destroy().always(function() {
+                    App.Groups.groups.get(that.model.groupId).fetch().done(function() {
+                        App.Core.Routing.showRoute('group', that.model.groupId, 'payment');
+                    });
+                });
+            } else {
+                this.laddaButton.stop();
+            }
+        },
+
+        onRender: function() {
+            this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
         }
     });
 

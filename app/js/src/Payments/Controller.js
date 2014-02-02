@@ -129,10 +129,20 @@ App.module('Payments.Controller', function(Controller, App, Backbone, Marionette
                 tags: tags
             });
 
-            var layout = new App.Core.Layouts.Main({
+            var views = {
                 headerView: headerView,
-                contentView: contentView
-            });
+                contentView: contentView,
+            };
+
+            if (payment.id && payment.isOwner()) {
+                var footerView = new App.Payments.Views.DeletePayment({
+                    model: payment
+                });
+
+                views.footerView = footerView;
+            }
+
+            var layout = new App.Core.Layouts.Main(views);
 
             App.layout.showView(layout, 'Groups.Payments.Payment', {
                 'Groups.Payments': 'right'
