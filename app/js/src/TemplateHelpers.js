@@ -15,6 +15,7 @@
 
 
     Handlebars.registerHelper('replace', function(value, a, b) {
+        value = value || '';
         return value.replace(a, b);
     });
 
