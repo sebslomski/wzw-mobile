@@ -277,13 +277,10 @@ App.module('Payments.Views', function(Views, App, Backbone, Marionette, $, _) {
             this.tagsKeyup();
 
             if (!this.model.isOwner()) {
-                this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
-
                 this.$('input').attr('readonly', true);
                 this.$el.addClass('s-is-readonly');
-            }
-
-            if (this.model.id && this.model.isOwner()) {
+            } else {
+                this.laddaButton = Ladda.create(this.$('.ladda-button').get(0));
             }
         }
     });
